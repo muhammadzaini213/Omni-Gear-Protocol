@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Environment
   - Cogs
+  - Snapper
   layers:
   - Default
   - TransparentFX
@@ -13,8 +14,8 @@ TagManager:
   - Collider
   - Water
   - UI
-  - 
-  - 
+  - Cogs
+  - Player
   - 
   - 
   - 
@@ -42,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Cogs
+    uniqueID: 2152908445
     locked: 0
