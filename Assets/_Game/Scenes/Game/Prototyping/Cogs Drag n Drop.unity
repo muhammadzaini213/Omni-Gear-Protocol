@@ -830,12 +830,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1636352877}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.664, y: -0.109, z: -0.0134397}
-  m_LocalScale: {x: 0.35033664, y: 0.35033664, z: 0.35033664}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.001, y: 0.144, z: -0.00671985}
+  m_LocalScale: {x: 0.17516832, y: 0.17516832, z: 0.17516832}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1127961365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1661071520
 GameObject:
@@ -982,6 +982,11 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8173694715723477939, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
+        type: 3}
+      propertyPath: normalSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8705651161048291383, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
         type: 3}
       propertyPath: m_SpriteTilingProperty.border.w
@@ -1015,6 +1020,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 7758326908712759478, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1636352881}
     - targetCorrespondingSourceObject: {fileID: 7758326908712759478, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
         type: 3}
       insertIndex: -1
@@ -1164,4 +1173,3 @@ SceneRoots:
   - {fileID: 1635917477}
   - {fileID: 268143448723286268}
   - {fileID: 693487074}
-  - {fileID: 1636352881}
