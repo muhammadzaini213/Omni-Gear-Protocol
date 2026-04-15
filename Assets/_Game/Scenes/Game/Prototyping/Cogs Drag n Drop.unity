@@ -706,7 +706,7 @@ GameObject:
   - component: {fileID: 1636352880}
   - component: {fileID: 1636352879}
   - component: {fileID: 1636352878}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Snapper
   m_TagString: Snapper
   m_Icon: {fileID: 0}
@@ -754,8 +754,8 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 1
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
@@ -881,6 +881,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 332065629186900862, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5608138825965438578, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
         type: 3}
