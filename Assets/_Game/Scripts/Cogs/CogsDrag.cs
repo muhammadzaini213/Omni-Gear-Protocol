@@ -3,7 +3,7 @@ using UnityEngine.Serialization;
 
 public class CogsDrag : MonoBehaviour
 {
-    [SerializeField] private bool onDrag = false;
+    [SerializeField] public bool onDrag = false;
     private Vector3 offset;
     private float zDepth;
     [SerializeField] float groundCheckDistance = 0.2f;
@@ -14,8 +14,7 @@ public class CogsDrag : MonoBehaviour
     private Rigidbody2D rb;
     
     [SerializeField] bool isColliding = false;
-
-    // Change these to 2D
+    
     void OnCollisionEnter2D(Collision2D col) => isColliding = true;
     void OnCollisionExit2D(Collision2D col) => isColliding = false;
 

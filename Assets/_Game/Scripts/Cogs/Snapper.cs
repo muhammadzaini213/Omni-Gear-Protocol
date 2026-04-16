@@ -6,49 +6,52 @@ namespace _Game.Scripts.Cogs
     public class Snapper : MonoBehaviour
     {
         private bool isCogSnapped;
-        [SerializeField] public SnappedEvent _nappedEvent;
-
+        private GameObject attachedObject;
         private Color objColor; // this is for testing purpose(t.p) only
 
         void Start()
         {
-              objColor = GetComponent<SpriteRenderer>().color; // t.p  
+            objColor = GetComponent<SpriteRenderer>().color; // t.p  
         }
-        
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            Debug.Log(other.gameObject.name);
+            if(other.gameObject.tag == "Environment") return;
+            SnappedEvent.Subscribe(OnCogsSnappedAction);
+            SnappedEvent.OnCogSnappedEvent();
+            CogsEvent.BroadcastCogAttached(this.gameObject, GetComponent<Cogs>().cogType );
+        }
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (other.CompareTag("Cogs"))
+            if(other.gameObject.tag == "Environment") return;
+            var drag = GetComponent<CogsDrag>();
+        
+            if (drag != null && !Input.GetMouseButton(0) && !drag.onDrag) 
             {
-                var drag = other.GetComponent<CogsDrag>();
-
-                if (drag != null && !Input.GetMouseButton(0)) 
-                {
-                    SnapCogsToTransform(other.gameObject);
-                    isCogSnapped =  true;
-                    SnappedEvent.Subscribe(OnCogsSnappedAction);
-                    SnappedEvent.OnCogSnappedEvent();
-                }
+               SnapCogsToTransform(other.gameObject);
+               isCogSnapped =  true;
             }
         }
+        
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.CompareTag("Cogs"))
-            {
-                other.transform.parent = null;
+                Debug.Log(other.gameObject.name);
+                if(other.gameObject.tag == "Environment") return;
+                transform.parent = null;
                 isCogSnapped =  false;
                 SnappedEvent.Unsubscribe(OnCogsSnappedAction);
                 SnappedEvent.Subscribe(OnCogsUnsnappedAction);
                 SnappedEvent.OnCogSnappedEvent();
-            }
         }
 
         private void SnapCogsToTransform(GameObject collidedObj)
         {
-            collidedObj.transform.position = transform.position;
-            collidedObj.transform.parent = this.transform;
+            transform.position = collidedObj.transform.position;
+            this.transform.parent = collidedObj.transform ;
             
-            var rb = collidedObj.GetComponent<Rigidbody2D>();
+            var rb = GetComponent<Rigidbody2D>();
             if(rb != null) {
                 rb.isKinematic = true;
                 rb.velocity = Vector2.zero;
@@ -61,6 +64,7 @@ namespace _Game.Scripts.Cogs
         {
             SpriteRenderer sr = GetComponent<SpriteRenderer>();
             sr.color = new Color(0f, 0f, 0f, 1f); 
+            Debug.Log("Cogs Event triggered by" + this.gameObject.name);
         }
         
         private void OnCogsUnsnappedAction()
