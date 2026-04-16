@@ -16,6 +16,10 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float normalSpeed = 10f;
     [SerializeField] private float jumpPower = 10f;
 
+    [Header("Jump Settings")]
+    [SerializeField] private float fallmultiplier = 2.5f;
+    [SerializeField] private float jumpCutMultiplier = 0.5f;
+
     void Awake()
     {
         rb = GetComponentInParent<Rigidbody2D>();
@@ -29,16 +33,26 @@ public class PlayerMove : MonoBehaviour
         {
             Jump();
         }
+        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0)
+        {
+            rb.velocity = new UnityEngine.Vector2(rb.velocity.x, rb.velocity.y * jumpCutMultiplier);
+        }
     }
 
     void FixedUpdate()
     {
         rb.velocity = new UnityEngine.Vector2(horizontalInput * normalSpeed, rb.velocity.y);
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += UnityEngine.Vector2.up * Physics2D.gravity.y * (fallmultiplier - 1) * Time.fixedDeltaTime;
+        }
     }
 
     private void Jump()
     {
         rb.velocity = new UnityEngine.Vector2(rb.velocity.x, jumpPower);
+        isGrounded = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
