@@ -1,5 +1,3 @@
-using System;
-using System.Numerics;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
