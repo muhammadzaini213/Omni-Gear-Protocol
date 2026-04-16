@@ -21,12 +21,13 @@ namespace _Game.Scripts.Cogs
             {
                 var drag = other.GetComponent<CogsDrag>();
 
-                if (drag != null && !Input.GetMouseButton(0)) 
+                if (drag != null && !Input.GetMouseButton(0) && !drag.onDrag) 
                 {
                     SnapCogsToTransform(other.gameObject);
                     isCogSnapped =  true;
                     SnappedEvent.Subscribe(OnCogsSnappedAction);
                     SnappedEvent.OnCogSnappedEvent();
+                    CogsEvent.BroadcastCogAttached(this.gameObject, other.GetComponent<Cogs>().cogType );
                 }
             }
         }

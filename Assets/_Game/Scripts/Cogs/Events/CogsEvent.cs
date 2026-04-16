@@ -1,14 +1,15 @@
 // CogsEvent.cs
 
 using _Game.Scripts.Cogs;
+using UnityEngine;
 
 public static class CogsEvent
 {
-    public delegate void OnCogAttached(CogsType cogType);
+    public delegate void OnCogAttached(GameObject obj, CogsType cogType);
     public static event OnCogAttached CogAttached;
     
-    public static void BroadcastCogAttached(CogsType cogType)
+    public static void BroadcastCogAttached(GameObject obj,CogsType cogType)
     {
-        CogAttached?.Invoke(cogType);
+        CogAttached?.Invoke(obj, cogType);
     }
 }

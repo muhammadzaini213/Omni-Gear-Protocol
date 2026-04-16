@@ -74,9 +74,12 @@ public class PlayerMove : MonoBehaviour
         CogsEvent.CogAttached -= OnCogAttached;
     }
     
-    void OnCogAttached(CogsType cogType)
+    void OnCogAttached(GameObject obj, CogsType cogType)
     {
-        currentMoveSpeed = currentMoveSpeed * 2;
+        if (obj.gameObject.tag == "Player" && cogType == CogsType.Small)
+        {
+            normalSpeed = 5;
+        }
     }
     
     public float GetCurrentSpeed() => currentMoveSpeed;

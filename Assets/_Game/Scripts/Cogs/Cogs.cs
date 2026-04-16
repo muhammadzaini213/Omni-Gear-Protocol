@@ -22,7 +22,6 @@ namespace _Game.Scripts.Cogs
             {
                 gameObject.AddComponent<LargeCogs>();
             }
-            CogsEvent.BroadcastCogAttached(cogType);
         }
         
     }
