@@ -1,86 +1,65 @@
-using System;
-using _Game.Scripts.Cogs;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private PlayerEnergy playerEnergy;
+
+    // Unused for now
+    // private PlayerEnergy playerEnergy;
 
     // ==================== MOVEMENT ====================
-    private Vector2 moveInput;
-    private bool isSprinting;
-    private float currentMoveSpeed;
+    // Using Horizontal Input Instead of Vector2 because we only need to move left and right, for simplified ofc
+    private float horizontalInput;
+    private bool isGrounded;
 
+    [Header("Movement Settings")]
     [SerializeField] private float normalSpeed = 10f;
-    [SerializeField] private float sprintSpeed = 25f;
-    [SerializeField] private float sprintEnergyPerSecond = 8f;
+    [SerializeField] private float jumpPower = 10f;
+
+    [Header("Jump Settings")]
+    [SerializeField] private float fallmultiplier = 2.5f;
+    [SerializeField] private float jumpCutMultiplier = 0.5f;
 
     void Awake()
     {
         rb = GetComponentInParent<Rigidbody2D>();
-        playerEnergy = GetComponentInParent<PlayerEnergy>();
     }
 
     void Update()
     {
-        // Baca input di Update, bukan FixedUpdate
-        moveInput = new Vector2(
-            Input.GetAxisRaw("Horizontal"),
-            Input.GetAxisRaw("Vertical")
-        ).normalized;
+        horizontalInput = Input.GetAxisRaw("Horizontal");
 
-        isSprinting = Input.GetKey(KeyCode.LeftShift);
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Jump();
+        }
+        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0)
+        {
+            rb.velocity = new UnityEngine.Vector2(rb.velocity.x, rb.velocity.y * jumpCutMultiplier);
+        }
     }
 
     void FixedUpdate()
     {
-        HandleSprintEnergy();
-        Move();
-    }
+        rb.velocity = new UnityEngine.Vector2(horizontalInput * normalSpeed, rb.velocity.y);
 
-    private void HandleSprintEnergy()
-    {
-        if (!isSprinting || moveInput == Vector2.zero) return;
-
-        float energyCost = sprintEnergyPerSecond * Time.fixedDeltaTime;
-        bool success = playerEnergy.UseEnergy(Mathf.CeilToInt(energyCost));
-
-        if (!success)
+        if (rb.velocity.y < 0)
         {
-            Debug.Log("[PlayerMove] Energy depleted, sprint stopped");
-            isSprinting = false;
+            rb.velocity += UnityEngine.Vector2.up * Physics2D.gravity.y * (fallmultiplier - 1) * Time.fixedDeltaTime;
         }
     }
 
-    private void Move()
+    private void Jump()
     {
-        if (moveInput == Vector2.zero) return;
+        rb.velocity = new UnityEngine.Vector2(rb.velocity.x, jumpPower);
+        isGrounded = false;
+    }
 
-        currentMoveSpeed = isSprinting ? sprintSpeed : normalSpeed;
-        rb.MovePosition(rb.position + moveInput * currentMoveSpeed * Time.fixedDeltaTime);
-
-        float angle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-    }
-        
-    void OnEnable()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        CogsEvent.CogAttached += OnCogAttached;
-    }
-    
-    void OnDisable()
-    {
-        CogsEvent.CogAttached -= OnCogAttached;
-    }
-    
-    void OnCogAttached(GameObject obj, CogsType cogType)
-    {
-        if (obj.gameObject.tag == "Player" && cogType == CogsType.Small)
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            normalSpeed = 5;
+            isGrounded = true;
         }
     }
-    
-    public float GetCurrentSpeed() => currentMoveSpeed;
 }
