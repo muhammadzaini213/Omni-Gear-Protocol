@@ -1,4 +1,5 @@
 using System;
+using _Game.Scripts.Cogs;
 using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
@@ -62,6 +63,21 @@ public class PlayerMove : MonoBehaviour
         float angle = Mathf.Atan2(moveInput.y, moveInput.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
     }
-
+        
+    void OnEnable()
+    {
+        CogsEvent.CogAttached += OnCogAttached;
+    }
+    
+    void OnDisable()
+    {
+        CogsEvent.CogAttached -= OnCogAttached;
+    }
+    
+    void OnCogAttached(CogsType cogType)
+    {
+        currentMoveSpeed = currentMoveSpeed * 2;
+    }
+    
     public float GetCurrentSpeed() => currentMoveSpeed;
 }
