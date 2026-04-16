@@ -6,6 +6,7 @@ public class CogsDrag : MonoBehaviour
     [SerializeField] private bool onDrag = false;
     private Vector3 offset;
     private float zDepth;
+    [SerializeField] float groundCheckDistance = 0.2f;
     [FormerlySerializedAs("groundLayer")] [SerializeField] LayerMask checkLayers;
     
     [SerializeField] public bool shouldFall;
@@ -59,8 +60,9 @@ public class CogsDrag : MonoBehaviour
     {
             if(onDrag) return;
             
-            RaycastHit2D groundCheck = Physics2D.Raycast(transform.position, Vector2.down, 0.07f, checkLayers);
+            RaycastHit2D groundCheck = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, checkLayers);
             shouldFall = (groundCheck.collider == null);
+            
     
             if (shouldFall && !isColliding)
             {
@@ -98,7 +100,7 @@ public class CogsDrag : MonoBehaviour
         if (onDrag)
         {
             Gizmos.color = Color.yellow;
-            Gizmos.DrawSphere(GetMouseWorldPos() + offset, 0.2f);
+            Gizmos.DrawSphere(GetMouseWorldPos() + offset, groundCheckDistance);
         }
     }
 }
