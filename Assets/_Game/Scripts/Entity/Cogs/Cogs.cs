@@ -6,12 +6,14 @@ namespace _Game.Scripts.Cogs
     {
         public CogsType cogType;
         public float rotateSpeed;
+        public bool reverseRotation;
 
         void Update() => RotateCogs();
 
         public void RotateCogs()
         {
-            transform.Rotate(0f, 0f, rotateSpeed * Time.deltaTime);
+            float direction = reverseRotation == true ? -1 : 1;
+            transform.Rotate(0f, 0f, direction * rotateSpeed * Time.deltaTime);
         }
     }
 
