@@ -22,11 +22,16 @@ public class ExampleReactor : MonoBehaviour, ISocketAttached
         snapChannel.OnCogUnsnapped -= HandleUnsnapped;
     }
 
-    private void HandleSnapped(GameObject cog, CogsType type) =>
+    private void HandleSnapped(GameObject cog, CogsType type)
+    {
         OnCogAttached(cog, type);
+    }
 
-    private void HandleUnsnapped(GameObject cog, CogsType type) =>
+    private void HandleUnsnapped(GameObject cog, CogsType type)
+    {
         OnCogDetached(cog, type);
+    }
+
 
     // ── ISnapperAttached ──────────────────────────────────────────────
     public void OnCogAttached(GameObject cog, CogsType type)
