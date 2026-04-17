@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private Animator animator;
 
     // Unused for now
     // private PlayerEnergy playerEnergy;
@@ -13,21 +14,28 @@ public class PlayerMove : MonoBehaviour
     private bool isGrounded;
 
     [Header("Movement Settings")]
-    [SerializeField] private float normalSpeed = 10f;
+    [SerializeField] private float normalSpeed = 3f;
     [SerializeField] private float jumpPower = 10f;
 
     [Header("Jump Settings")]
-    [SerializeField] private float fallmultiplier = 2.5f;
-    [SerializeField] private float jumpCutMultiplier = 0.5f;
+    [SerializeField] private float fallmultiplier = 2f;
+    [SerializeField] private float jumpCutMultiplier = 0.8f;
 
     void Awake()
     {
         rb = GetComponentInParent<Rigidbody2D>();
+        animator = GetComponentInParent<Animator>();
     }
 
     void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        FlipCharacter();
+
+        animator.SetBool("isRunning", horizontalInput != 0);
+        animator.SetBool("isJumping", !isGrounded);
+        animator.SetFloat("yVelocity", rb.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -46,6 +54,18 @@ public class PlayerMove : MonoBehaviour
         if (rb.velocity.y < 0)
         {
             rb.velocity += UnityEngine.Vector2.up * Physics2D.gravity.y * (fallmultiplier - 1) * Time.fixedDeltaTime;
+        }
+    }
+
+    private void FlipCharacter()
+    {
+        if (horizontalInput > 0)
+        {
+            transform.localScale = new UnityEngine.Vector3(2, 2, 2);
+        }
+        else if (horizontalInput < 0)
+        {
+            transform.localScale = new UnityEngine.Vector3(-2, 2, 2);
         }
     }
 
