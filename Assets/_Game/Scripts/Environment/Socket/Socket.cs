@@ -34,6 +34,7 @@ namespace _Game.Scripts.Cogs
         {
             cogObj.transform.position = transform.position;
             cogObj.transform.SetParent(transform);
+            cog?.Snap(); // NEW SCRIPT: Notify the cog that it has been snapped, so it can start rotating
 
             var rb = cogObj.GetComponent<Rigidbody2D>();
             if (rb != null) { rb.isKinematic = true; rb.velocity = Vector2.zero; }
@@ -41,16 +42,21 @@ namespace _Game.Scripts.Cogs
             _currentCog = cog;
             _isCogSnapped = true;
 
+
+
             snapChannel.RaiseSnapped(cogObj, cog.cogType);
         }
 
         private void UnsnapCog()
         {
             var cogObj = _currentCog.gameObject;
-            var type   = _currentCog.cogType;
+            var type = _currentCog.cogType;
+
+            Cogs cogs = cogObj.GetComponent<Cogs>();
+            cogs?.UnsnapNotify(); // NEW SCRIPT: Notify the cog that it has been unsnapped, so it can stop rotating
 
             cogObj.transform.SetParent(null);
-            _currentCog   = null;
+            _currentCog = null;
             _isCogSnapped = false;
 
             snapChannel.RaiseUnsnapped(cogObj, type);

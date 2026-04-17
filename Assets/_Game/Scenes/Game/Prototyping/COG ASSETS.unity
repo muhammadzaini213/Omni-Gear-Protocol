@@ -234,10 +234,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1280619058}
     m_Modifications:
+    - target: {fileID: 4410224673040830636, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
+        type: 3}
+      propertyPath: rotateSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4424322023446743583, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
       propertyPath: m_Name
-      value: MediumCogs
+      value: MediumCog
       objectReference: {fileID: 0}
     - target: {fileID: 5622555694503197569, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
@@ -434,7 +439,7 @@ PrefabInstance:
     - target: {fileID: 4410224673040830636, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
       propertyPath: rotateSpeed
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4410224673040830636, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
@@ -444,7 +449,7 @@ PrefabInstance:
     - target: {fileID: 4424322023446743583, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
       propertyPath: m_Name
-      value: LargeCogs
+      value: LargeCog
       objectReference: {fileID: 0}
     - target: {fileID: 5618558871915953062, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
@@ -1262,7 +1267,7 @@ PrefabInstance:
     - target: {fileID: 4410224673040830636, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
       propertyPath: rotateSpeed
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4410224673040830636, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
@@ -1272,7 +1277,7 @@ PrefabInstance:
     - target: {fileID: 4424322023446743583, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}
       propertyPath: m_Name
-      value: ExampleCog
+      value: SmallCog
       objectReference: {fileID: 0}
     - target: {fileID: 5618558871915953062, guid: e5d256fce2a3ae612bfaca68ab8f1a61,
         type: 3}

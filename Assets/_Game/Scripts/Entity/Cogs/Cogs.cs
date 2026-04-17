@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace _Game.Scripts.Cogs
@@ -7,8 +8,7 @@ namespace _Game.Scripts.Cogs
         public CogsType cogType;
         public float rotateSpeed;
         public bool reverseDirection;
-        public bool isSnapped;
-        public CogSnapChannel snapChannel;
+        public bool isSnapped { get; private set; }
         
 
         void Update() => RotateCogs();
@@ -21,27 +21,14 @@ namespace _Game.Scripts.Cogs
             transform.Rotate(0f, 0f, direction * rotateSpeed * Time.deltaTime);
         }
 
-        public void SnapNotify(GameObject obj, CogsType type)
+        public void Snap()
         {
             isSnapped = true;
         }
 
-        public void UnsnapNotify(GameObject obj, CogsType type)
+        public void UnsnapNotify()
         {
             isSnapped = false;
-        }
-        
-     
-        private void OnEnable()
-        {
-            snapChannel.OnCogSnapped += SnapNotify;
-            snapChannel.OnCogUnsnapped += UnsnapNotify;
-        }
-
-        private void OnDisable()
-        {
-            snapChannel.OnCogSnapped -= SnapNotify;
-            snapChannel.OnCogUnsnapped -= UnsnapNotify;
         }
     }
 

@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class CogsDrag : MonoBehaviour
 {
-    [SerializeField] public bool onDrag;
     [SerializeField] private float groundCheckDistance = 0.2f;
     [SerializeField] private LayerMask checkLayers;
 
+    public bool onDrag { get; private set; }
     private Vector3 _offset;
     private float   _zDepth;
     private bool    _isColliding;
