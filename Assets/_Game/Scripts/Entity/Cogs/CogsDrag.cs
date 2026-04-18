@@ -32,12 +32,10 @@ public class CogsDrag : MonoBehaviour
         _zDepth = Camera.main.WorldToScreenPoint(transform.position).z;
         _offset = transform.position - MouseWorldPos();
         onDrag = true;
-        
-        _rb.simulated = true;
+
         _rb.isKinematic = true;
         _rb.velocity = Vector2.zero;
     }
-
     private void OnMouseUp() => onDrag = false;
 
     private void Hold()

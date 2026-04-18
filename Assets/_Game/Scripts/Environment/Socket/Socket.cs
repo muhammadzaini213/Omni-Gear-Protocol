@@ -17,8 +17,8 @@ namespace _Game.Scripts.Cogs
             {
                 if (_currentCog != null && other.gameObject == _currentCog.gameObject)
                 {
-                    var currentDrag = other.GetComponent<CogsDrag>();
-                    if (currentDrag != null && currentDrag.onDrag)
+                    var drag1 = other.GetComponent<CogsDrag>();
+                    if (drag1 != null && drag1.onDrag)
                     {
                         UnsnapCog();
                     }
@@ -36,9 +36,7 @@ namespace _Game.Scripts.Cogs
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (_currentCog == null) return;
-            if (other.gameObject != _currentCog.gameObject) return;
-
+            if (_currentCog == null || other.gameObject != _currentCog.gameObject) return;
             UnsnapCog();
         }
 
@@ -47,15 +45,15 @@ namespace _Game.Scripts.Cogs
             _isCogSnapped = true;
             _currentCog = cog;
 
-            cogObj.transform.position = transform.position;
             cogObj.transform.SetParent(transform);
+            cogObj.transform.localPosition = Vector3.zero;
             
             var rb = cogObj.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
-                rb.velocity = Vector2.zero;
                 rb.isKinematic = true;
-                rb.simulated = false;
+                rb.velocity = Vector2.zero;
+                rb.angularVelocity = 0;
             }
 
             cog?.Snap();
@@ -64,11 +62,13 @@ namespace _Game.Scripts.Cogs
 
         private void UnsnapCog()
         {
+            if (_currentCog == null) return;
+
             var cogObj = _currentCog.gameObject;
             var type = _currentCog.cogType;
 
             var rb = cogObj.GetComponent<Rigidbody2D>();
-            if (rb != null) rb.simulated = true;
+            if (rb != null) rb.isKinematic = false;
 
             _currentCog.UnsnapNotify();
             cogObj.transform.SetParent(null);
