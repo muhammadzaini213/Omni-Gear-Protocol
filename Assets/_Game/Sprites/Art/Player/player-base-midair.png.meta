@@ -126,10 +126,10 @@ TextureImporter:
       name: player-base-midair_0
       rect:
         serializedVersion: 2
-        x: 44
-        y: 20
-        width: 60
-        height: 131
+        x: 0
+        y: 0
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -147,10 +147,10 @@ TextureImporter:
       name: player-base-midair_1
       rect:
         serializedVersion: 2
-        x: 200
-        y: 20
-        width: 60
-        height: 131
+        x: 156
+        y: 0
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -168,10 +168,10 @@ TextureImporter:
       name: player-base-midair_2
       rect:
         serializedVersion: 2
-        x: 356
-        y: 20
-        width: 60
-        height: 131
+        x: 312
+        y: 0
+        width: 156
+        height: 156
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

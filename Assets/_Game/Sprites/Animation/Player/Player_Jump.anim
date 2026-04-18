@@ -35,15 +35,6 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
     flags: 2
-  - serializedVersion: 2
-    curve:
-    - time: 0
-      value: {fileID: 2012089217, guid: f1756c92add24c94e958cbacc44856c0, type: 3}
-    attribute: m_Sprite
-    path: Wheel
-    classID: 212
-    script: {fileID: 0}
-    flags: 2
   m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
@@ -60,22 +51,12 @@ AnimationClip:
       isPPtrCurve: 1
       isIntCurve: 0
       isSerializeReferenceCurve: 0
-    - serializedVersion: 2
-      path: 2685501552
-      attribute: 0
-      script: {fileID: 0}
-      typeID: 212
-      customType: 23
-      isPPtrCurve: 1
-      isIntCurve: 0
-      isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: -907431221, guid: d89feaf6d5bc8d543aace4219189b43f, type: 3}
     - {fileID: -384964693, guid: d89feaf6d5bc8d543aace4219189b43f, type: 3}
     - {fileID: -66736438, guid: d89feaf6d5bc8d543aace4219189b43f, type: 3}
     - {fileID: -235153675, guid: d89feaf6d5bc8d543aace4219189b43f, type: 3}
     - {fileID: -389284111, guid: d89feaf6d5bc8d543aace4219189b43f, type: 3}
-    - {fileID: 2012089217, guid: f1756c92add24c94e958cbacc44856c0, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
