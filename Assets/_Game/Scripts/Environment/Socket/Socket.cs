@@ -7,24 +7,29 @@ namespace _Game.Scripts.Cogs
         [Header("Snap Settings")]
         [SerializeField] private CogsType[] allowedTypes;
         [SerializeField] private CogSnapChannel snapChannel;
+        [SerializeField] private float detachTolerance = 0.5f; 
 
         private bool _isCogSnapped;
         private Cogs _currentCog;
+        private CogsDrag _currentDrag;
+
+        private void Update()
+        {
+            if (!_isCogSnapped || _currentCog == null) return;
+
+            if (!_currentDrag.onDrag)
+            {
+                _currentCog.transform.position = transform.position;
+            }
+            else
+            {
+                UnsnapCog();
+            }
+        }
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (_isCogSnapped)
-            {
-                if (_currentCog != null && other.gameObject == _currentCog.gameObject)
-                {
-                    var drag1 = other.GetComponent<CogsDrag>();
-                    if (drag1 != null && drag1.onDrag)
-                    {
-                        UnsnapCog();
-                    }
-                }
-                return;
-            }
+            if (_isCogSnapped) return;
 
             if (!IsAllowedCog(other, out Cogs cog)) return;
 
@@ -34,16 +39,11 @@ namespace _Game.Scripts.Cogs
             SnapCog(other.gameObject, cog);
         }
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (_currentCog == null || other.gameObject != _currentCog.gameObject) return;
-            UnsnapCog();
-        }
-
         private void SnapCog(GameObject cogObj, Cogs cog)
         {
             _isCogSnapped = true;
             _currentCog = cog;
+            _currentDrag = cogObj.GetComponent<CogsDrag>();
 
             cogObj.transform.SetParent(transform);
             cogObj.transform.localPosition = Vector3.zero;
@@ -54,13 +54,14 @@ namespace _Game.Scripts.Cogs
                 rb.isKinematic = true;
                 rb.velocity = Vector2.zero;
                 rb.angularVelocity = 0;
+                rb.simulated = true;
             }
 
             cog?.Snap();
             snapChannel.RaiseSnapped(cogObj, cog.cogType);
         }
 
-        private void UnsnapCog()
+        public void UnsnapCog()
         {
             if (_currentCog == null) return;
 
@@ -73,6 +74,7 @@ namespace _Game.Scripts.Cogs
             _currentCog.UnsnapNotify();
             cogObj.transform.SetParent(null);
             
+            _currentDrag = null;
             _currentCog = null;
             _isCogSnapped = false;
 

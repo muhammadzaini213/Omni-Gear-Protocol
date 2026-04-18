@@ -59,17 +59,18 @@ public class PlayerMove : MonoBehaviour
 
     private void FlipCharacter()
     {
-        if (horizontalInput == 0) return;
+        // THE I REALIZED THIS IS UNNECESSARY BECAUSE OUR SPRITE IS SYMMETRICAL LOL, BUT I'LL KEEP THIS HERE IN CASE WE WANT TO CHANGE THE SPRITE LATER
+        // if (horizontalInput == 0) return;
 
-        UnityEngine.Vector3 currentScale = transform.localScale;
+        // UnityEngine.Vector3 currentScale = transform.localScale;
 
-        float direction = Mathf.Sign(horizontalInput);
+        // float direction = Mathf.Sign(horizontalInput);
 
-        transform.localScale = new UnityEngine.Vector3(
-            direction * Mathf.Abs(currentScale.x),
-            currentScale.y,
-            currentScale.z
-        );
+        // transform.localScale = new UnityEngine.Vector3(
+        //     direction * Mathf.Abs(currentScale.x),
+        //     currentScale.y,
+        //     currentScale.z
+        // );
     }
 
     private void Jump()
