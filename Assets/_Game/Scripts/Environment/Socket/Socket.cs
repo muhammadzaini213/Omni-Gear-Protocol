@@ -7,8 +7,6 @@ namespace _Game.Scripts.Cogs
         [Header("Snap Settings")]
         [SerializeField] private CogsType[] allowedTypes;
         [SerializeField] private CogSnapChannel snapChannel;
-        [SerializeField] private float detachTolerance = 0.5f; 
-
         private bool _isCogSnapped;
         private Cogs _currentCog;
         private CogsDrag _currentDrag;
