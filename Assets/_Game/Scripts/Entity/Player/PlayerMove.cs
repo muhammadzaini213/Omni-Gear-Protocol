@@ -61,11 +61,11 @@ public class PlayerMove : MonoBehaviour
     {
         if (horizontalInput > 0)
         {
-            transform.localScale = new UnityEngine.Vector3(2, 2, 2);
+            transform.localScale = new UnityEngine.Vector3(1, 1, 1);
         }
         else if (horizontalInput < 0)
         {
-            transform.localScale = new UnityEngine.Vector3(-2, 2, 2);
+            transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
         }
     }
 

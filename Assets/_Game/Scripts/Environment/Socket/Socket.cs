@@ -13,7 +13,19 @@ namespace _Game.Scripts.Cogs
 
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (_isCogSnapped) return;
+            if (_isCogSnapped)
+            {
+                if (_currentCog != null && other.gameObject == _currentCog.gameObject)
+                {
+                    var currentDrag = other.GetComponent<CogsDrag>();
+                    if (currentDrag != null && currentDrag.onDrag)
+                    {
+                        UnsnapCog();
+                    }
+                }
+                return;
+            }
+
             if (!IsAllowedCog(other, out Cogs cog)) return;
 
             var drag = other.GetComponent<CogsDrag>();
@@ -32,18 +44,21 @@ namespace _Game.Scripts.Cogs
 
         private void SnapCog(GameObject cogObj, Cogs cog)
         {
+            _isCogSnapped = true;
+            _currentCog = cog;
+
             cogObj.transform.position = transform.position;
             cogObj.transform.SetParent(transform);
-            cog?.Snap(); // NEW SCRIPT: Notify the cog that it has been snapped, so it can start rotating
-
+            
             var rb = cogObj.GetComponent<Rigidbody2D>();
-            if (rb != null) { rb.isKinematic = true; rb.velocity = Vector2.zero; }
+            if (rb != null)
+            {
+                rb.velocity = Vector2.zero;
+                rb.isKinematic = true;
+                rb.simulated = false;
+            }
 
-            _currentCog = cog;
-            _isCogSnapped = true;
-
-
-
+            cog?.Snap();
             snapChannel.RaiseSnapped(cogObj, cog.cogType);
         }
 
@@ -52,10 +67,12 @@ namespace _Game.Scripts.Cogs
             var cogObj = _currentCog.gameObject;
             var type = _currentCog.cogType;
 
-            Cogs cogs = cogObj.GetComponent<Cogs>();
-            cogs?.UnsnapNotify(); // NEW SCRIPT: Notify the cog that it has been unsnapped, so it can stop rotating
+            var rb = cogObj.GetComponent<Rigidbody2D>();
+            if (rb != null) rb.simulated = true;
 
+            _currentCog.UnsnapNotify();
             cogObj.transform.SetParent(null);
+            
             _currentCog = null;
             _isCogSnapped = false;
 
