@@ -59,14 +59,17 @@ public class PlayerMove : MonoBehaviour
 
     private void FlipCharacter()
     {
-        if (horizontalInput > 0)
-        {
-            transform.localScale = new UnityEngine.Vector3(1, 1, 1);
-        }
-        else if (horizontalInput < 0)
-        {
-            transform.localScale = new UnityEngine.Vector3(-1, 1, 1);
-        }
+        if (horizontalInput == 0) return;
+
+        UnityEngine.Vector3 currentScale = transform.localScale;
+
+        float direction = Mathf.Sign(horizontalInput);
+
+        transform.localScale = new UnityEngine.Vector3(
+            direction * Mathf.Abs(currentScale.x),
+            currentScale.y,
+            currentScale.z
+        );
     }
 
     private void Jump()
