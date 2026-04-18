@@ -7,13 +7,28 @@ namespace _Game.Scripts.Cogs
         [Header("Snap Settings")]
         [SerializeField] private CogsType[] allowedTypes;
         [SerializeField] private CogSnapChannel snapChannel;
-
         private bool _isCogSnapped;
         private Cogs _currentCog;
+        private CogsDrag _currentDrag;
+
+        private void Update()
+        {
+            if (!_isCogSnapped || _currentCog == null) return;
+
+            if (!_currentDrag.onDrag)
+            {
+                _currentCog.transform.position = transform.position;
+            }
+            else
+            {
+                UnsnapCog();
+            }
+        }
 
         private void OnTriggerStay2D(Collider2D other)
         {
             if (_isCogSnapped) return;
+
             if (!IsAllowedCog(other, out Cogs cog)) return;
 
             var drag = other.GetComponent<CogsDrag>();
@@ -22,40 +37,42 @@ namespace _Game.Scripts.Cogs
             SnapCog(other.gameObject, cog);
         }
 
-        private void OnTriggerExit2D(Collider2D other)
-        {
-            if (_currentCog == null) return;
-            if (other.gameObject != _currentCog.gameObject) return;
-
-            UnsnapCog();
-        }
-
         private void SnapCog(GameObject cogObj, Cogs cog)
         {
-            cogObj.transform.position = transform.position;
-            cogObj.transform.SetParent(transform);
-            cog?.Snap(); // NEW SCRIPT: Notify the cog that it has been snapped, so it can start rotating
-
-            var rb = cogObj.GetComponent<Rigidbody2D>();
-            if (rb != null) { rb.isKinematic = true; rb.velocity = Vector2.zero; }
-
-            _currentCog = cog;
             _isCogSnapped = true;
+            _currentCog = cog;
+            _currentDrag = cogObj.GetComponent<CogsDrag>();
 
+            cogObj.transform.SetParent(transform);
+            cogObj.transform.localPosition = Vector3.zero;
+            
+            var rb = cogObj.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                rb.isKinematic = true;
+                rb.velocity = Vector2.zero;
+                rb.angularVelocity = 0;
+                rb.simulated = true;
+            }
 
-
+            cog?.Snap();
             snapChannel.RaiseSnapped(cogObj, cog.cogType);
         }
 
-        private void UnsnapCog()
+        public void UnsnapCog()
         {
+            if (_currentCog == null) return;
+
             var cogObj = _currentCog.gameObject;
             var type = _currentCog.cogType;
 
-            Cogs cogs = cogObj.GetComponent<Cogs>();
-            cogs?.UnsnapNotify(); // NEW SCRIPT: Notify the cog that it has been unsnapped, so it can stop rotating
+            var rb = cogObj.GetComponent<Rigidbody2D>();
+            if (rb != null) rb.isKinematic = false;
 
+            _currentCog.UnsnapNotify();
             cogObj.transform.SetParent(null);
+            
+            _currentDrag = null;
             _currentCog = null;
             _isCogSnapped = false;
 

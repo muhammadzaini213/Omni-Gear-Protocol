@@ -130,8 +130,8 @@ TextureImporter:
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4734704, y: 0.152402}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -151,8 +151,8 @@ TextureImporter:
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4734704, y: 0.152402}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -172,8 +172,8 @@ TextureImporter:
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4734704, y: 0.152402}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -193,8 +193,8 @@ TextureImporter:
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4734704, y: 0.152402}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -214,8 +214,8 @@ TextureImporter:
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4734704, y: 0.152402}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -235,8 +235,8 @@ TextureImporter:
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4734704, y: 0.152402}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -256,8 +256,8 @@ TextureImporter:
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4734704, y: 0.152402}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -277,8 +277,8 @@ TextureImporter:
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4734704, y: 0.152402}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -286,6 +286,27 @@ TextureImporter:
       bones: []
       spriteID: 05c3bf12dbdc7a041834674749ade65e
       internalID: -174197060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: wheel-explode_8
+      rect:
+        serializedVersion: 2
+        x: 1263
+        y: 9
+        width: 135
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b9e3d318c9011536930ce4557662de7
+      internalID: -1045700951
       vertices: []
       indices: 
       edges: []
@@ -309,6 +330,7 @@ TextureImporter:
       wheel-explode_5: 1112747423
       wheel-explode_6: 902784373
       wheel-explode_7: -174197060
+      wheel-explode_8: -1045700951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

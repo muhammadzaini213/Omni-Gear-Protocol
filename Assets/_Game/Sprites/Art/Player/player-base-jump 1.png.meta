@@ -123,169 +123,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player-base-jump_0
+      name: player-base-jump 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4739781, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 01dbec8c898aa504eb82e1835dcbf2d1
-      internalID: -907431221
+      spriteID: 1e690bf36a4699b7f92be674c055d2af
+      internalID: -461684836
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-base-jump_1
+      name: player-base-jump 1_1
       rect:
         serializedVersion: 2
         x: 156
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4739781, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e189d9919bbadd4e900447d7a7a1bc5
-      internalID: -384964693
+      spriteID: 633d19146f33d91f09b9353c38336435
+      internalID: -1167431077
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-base-jump_2
+      name: player-base-jump 1_2
       rect:
         serializedVersion: 2
         x: 312
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4739781, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a99b74bf873f920479bd0d4abf0306b1
-      internalID: -66736438
+      spriteID: eb2518c9b50cb948386494bd2cca1f9b
+      internalID: -399444784
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-base-jump_3
+      name: player-base-jump 1_3
       rect:
         serializedVersion: 2
         x: 468
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4739781, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d2978b609e5e4c44b4a0214671d2583
-      internalID: -235153675
+      spriteID: 0ed037f2d4980b576a0a854e3579bf0d
+      internalID: 327398768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-base-jump_4
+      name: player-base-jump 1_4
       rect:
         serializedVersion: 2
         x: 624
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4739781, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 05572c59a512821449d232d6fa27faa1
-      internalID: -389284111
+      spriteID: 1ac905767eb8b569a945727b2ac0a6bb
+      internalID: -288343846
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-base-jump_5
+      name: player-base-jump 1_5
       rect:
         serializedVersion: 2
         x: 780
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4739781, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45028d5c3e8e2b447bd7134d9771aad7
-      internalID: -15348315
+      spriteID: afa3c3859a6827219b7887f98278c947
+      internalID: 520584710
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-base-jump_6
+      name: player-base-jump 1_6
       rect:
         serializedVersion: 2
         x: 936
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4739781, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 44b32be21f3e83f40848c684b9457082
-      internalID: 142501078
+      spriteID: ba88ecdc5781f0b42ad17101fcd72208
+      internalID: 1741348543
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player-base-jump_7
+      name: player-base-jump 1_7
       rect:
         serializedVersion: 2
         x: 1092
         y: 0
         width: 156
         height: 156
-      alignment: 9
-      pivot: {x: 0.4739781, y: 0.5}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4cd07e95fb0b3d9459a2b53c52374b2e
-      internalID: -1420623049
+      spriteID: 0b63019375d4fea05afb9b2a8b266e13
+      internalID: 2135248254
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player-base-jump_0: -907431221
-      player-base-jump_1: -384964693
-      player-base-jump_2: -66736438
-      player-base-jump_3: -235153675
-      player-base-jump_4: -389284111
-      player-base-jump_5: -15348315
-      player-base-jump_6: 142501078
-      player-base-jump_7: -1420623049
+      player-base-jump 1_0: -461684836
+      player-base-jump 1_1: -1167431077
+      player-base-jump 1_2: -399444784
+      player-base-jump 1_3: 327398768
+      player-base-jump 1_4: -288343846
+      player-base-jump 1_5: 520584710
+      player-base-jump 1_6: 1741348543
+      player-base-jump 1_7: 2135248254
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
