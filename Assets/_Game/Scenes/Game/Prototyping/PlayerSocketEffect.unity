@@ -880,17 +880,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 927460049830741842, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
-        type: 3}
-      propertyPath: snapChannel
-      value: 
-      objectReference: {fileID: 11400000, guid: 80d51eb67cc44aec8b0794102b9b916d,
-        type: 2}
-    - target: {fileID: 2632453773613983020, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
-        type: 3}
-      propertyPath: timeBeforeDeactivate
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 7758326908712759478, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -941,12 +930,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8173694715723477939, guid: f7cca1f6eb910156aaeed99e6a5cd17a,
-        type: 3}
-      propertyPath: snapChannel
-      value: 
-      objectReference: {fileID: 11400000, guid: 72d7b871cb439db86a65b30dcc5c48db,
-        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

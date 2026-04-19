@@ -202,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f3b0ada1c062f2fe908a2fbacd21676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapChannel: {fileID: 0}
+  snapChannel: {fileID: 11400000, guid: 72d7b871cb439db86a65b30dcc5c48db, type: 2}
   normalSpeed: 3
 --- !u!114 &927460049830741842
 MonoBehaviour:
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f06d3388bf25c1692be044661b315fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapChannel: {fileID: 0}
+  snapChannel: {fileID: 11400000, guid: 80d51eb67cc44aec8b0794102b9b916d, type: 2}
   jumpPower: 6
   fallmultiplier: 2
   jumpCutMultiplier: 0.8
@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapChannel: {fileID: 11400000, guid: d031837657157270a978d1548aecfb51, type: 2}
+  timeBeforeDeactivate: 2
 --- !u!1 &2013526943256327871
 GameObject:
   m_ObjectHideFlags: 0
