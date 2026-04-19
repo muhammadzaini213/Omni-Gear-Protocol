@@ -27,7 +27,7 @@ namespace _Game.Scripts.Cogs
             {
                 if (targetCog.transform.parent == transform) return;
 
-                StopAllCoroutines(); 
+                StopAllCoroutines();
                 StartCoroutine(RecallRoutine(targetCog));
             }
         }
@@ -35,12 +35,18 @@ namespace _Game.Scripts.Cogs
         private IEnumerator RecallRoutine(Cogs cog)
         {
             var rb = cog.GetComponent<Rigidbody2D>();
-           
+            var col = cog.GetComponent<Collider2D>(); 
+
             var currentSocket = cog.GetComponentInParent<Socket>();
-            if (currentSocket != null) 
+            if (currentSocket != null)
             {
                 currentSocket.UnsnapCog();
             }
+
+
+            if (col != null) col.enabled = false;
+
+            cog.Snap();
 
             rb.isKinematic = true;
             rb.velocity = Vector2.zero;
@@ -56,7 +62,8 @@ namespace _Game.Scripts.Cogs
                 yield return null;
             }
 
-    
+            if (col != null) col.enabled = true;
+
             SnapCog(cog.gameObject, cog);
         }
 
