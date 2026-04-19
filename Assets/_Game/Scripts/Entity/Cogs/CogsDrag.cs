@@ -16,7 +16,7 @@ namespace _Game.Scripts.Cogs
         [SerializeField] private float dragResistance = 10f; // Hambatan udara saat di-drag agar stabil
 
         public bool onDrag { get; private set; }
-        
+
         private Vector3 _offset;
         private float _zDepth;
         private bool _isColliding;
@@ -45,6 +45,11 @@ namespace _Game.Scripts.Cogs
 
         private void OnMouseDown()
         {
+            if (gameObject.CompareTag("CogsDisabled"))
+            {
+                Debug.Log("Player cannot drag this cog - medium cog is not attached");
+            }
+
             if (!gameObject.CompareTag("Cogs")) return;
 
             _zDepth = Camera.main.WorldToScreenPoint(transform.position).z;
@@ -53,9 +58,9 @@ namespace _Game.Scripts.Cogs
 
             _rb.isKinematic = false;
             _rb.gravityScale = 0f;
-            
+
             _rb.drag = dragResistance;
-            
+
             _lastPosition = transform.position;
         }
 
@@ -126,6 +131,17 @@ namespace _Game.Scripts.Cogs
             var p = Input.mousePosition;
             p.z = _zDepth;
             return Camera.main.ScreenToWorldPoint(p);
+        }
+
+        public void ForceRelease()
+        {
+            onDrag = false;
+
+            _rb.isKinematic = false;
+            _rb.gravityScale = 1f;
+            _rb.drag = _originalLinearDrag;
+
+            _rb.velocity = _dragVelocity;
         }
     }
 }

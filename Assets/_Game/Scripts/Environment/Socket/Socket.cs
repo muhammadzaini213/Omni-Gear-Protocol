@@ -5,13 +5,13 @@ namespace _Game.Scripts.Cogs
     public class Socket : MonoBehaviour
     {
         [Header("Snap Settings")]
-        [SerializeField] private CogsType[] allowedTypes;
+        [SerializeField] protected CogsType[] allowedTypes;
         [SerializeField] private CogSnapChannel snapChannel;
         private bool _isCogSnapped;
         private Cogs _currentCog;
         private CogsDrag _currentDrag;
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!_isCogSnapped || _currentCog == null) return;
 
@@ -31,13 +31,15 @@ namespace _Game.Scripts.Cogs
 
             if (!IsAllowedCog(other, out Cogs cog)) return;
 
+            if (cog.isSnapped) return;
+
             var drag = other.GetComponent<CogsDrag>();
-            if (drag == null || drag.onDrag || Input.GetMouseButton(0)) return;
+            if (drag == null || drag.onDrag) return;
 
             SnapCog(other.gameObject, cog);
         }
 
-        private void SnapCog(GameObject cogObj, Cogs cog)
+        protected virtual void SnapCog(GameObject cogObj, Cogs cog)
         {
             _isCogSnapped = true;
             _currentCog = cog;
@@ -45,7 +47,7 @@ namespace _Game.Scripts.Cogs
 
             cogObj.transform.SetParent(transform);
             cogObj.transform.localPosition = Vector3.zero;
-            
+
             var rb = cogObj.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -71,7 +73,7 @@ namespace _Game.Scripts.Cogs
 
             _currentCog.UnsnapNotify();
             cogObj.transform.SetParent(null);
-            
+
             _currentDrag = null;
             _currentCog = null;
             _isCogSnapped = false;

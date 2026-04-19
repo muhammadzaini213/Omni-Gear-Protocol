@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4477048808247862304}
   - component: {fileID: 355810390895318374}
-  - component: {fileID: 8961560074155012260}
   - component: {fileID: 5208221011755822869}
+  - component: {fileID: 7480467467638085094}
   m_Layer: 2
   m_Name: PlayerSocket
   m_TagString: Snapper
@@ -86,20 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8961560074155012260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8432721355487743761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165b4fca5bfb447e9b687abef860e5b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allowedTypes: 
-  snapChannel: {fileID: 0}
 --- !u!58 &5208221011755822869
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +121,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7480467467638085094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8432721355487743761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 541bc35cc61834c6f8967c1b706f2fb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allowedTypes: 
+  snapChannel: {fileID: 0}
+  recallKey: 114
+  recallDuration: 0.5
