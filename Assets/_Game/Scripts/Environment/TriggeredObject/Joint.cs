@@ -2,7 +2,7 @@ using _Game.Scripts.Cogs;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Cart : BaseTriggerObj
+public class Joint : BaseTriggerObj
 {
     [SerializeField] private float targetedrotationDegree;
     [SerializeField] private float initialRotationDegree;

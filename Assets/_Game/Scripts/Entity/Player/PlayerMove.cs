@@ -1,15 +1,30 @@
-using _Game.Scripts.Cogs;
 using UnityEngine;
 
-public class PlayerMove : BaseTriggerObj, ISocketAttached
+public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Animator animator;
+
+    // Unused for now
+    // private PlayerEnergy playerEnergy;
+
+    // ==================== MOVEMENT ====================
+    // Using Horizontal Input Instead of Vector2 because we only need to move left and right, for simplified ofc
     private float horizontalInput;
+    private bool isGrounded;
 
     [Header("Movement Settings")]
     [SerializeField] private float normalSpeed = 3f;
-    private bool canMove;
+    [SerializeField] private float jumpPower = 10f;
+
+    [Header("Jump Settings")]
+    [SerializeField] private float fallmultiplier = 2f;
+    [SerializeField] private float jumpCutMultiplier = 0.8f;
+    
+    public float speed => horizontalInput * normalSpeed;
+
+    public bool IsGrounded => isGrounded;
+    
 
     void Awake()
     {
@@ -19,28 +34,72 @@ public class PlayerMove : BaseTriggerObj, ISocketAttached
 
     void Update()
     {
-        if (!canMove) return;
         horizontalInput = Input.GetAxisRaw("Horizontal");
+
+        // Update Animator
         animator.SetBool("isRunning", horizontalInput != 0);
+        animator.SetBool("isGrounded", isGrounded); // Parameter baru untuk trigger landing
+        animator.SetFloat("yVelocity", rb.velocity.y);
+
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        {
+            Jump();
+        }
+
+        // Jump Cut (Lompatan pendek jika spasi dilepas)
+        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0)
+        {
+            rb.velocity = new UnityEngine.Vector2(rb.velocity.x, rb.velocity.y * jumpCutMultiplier);
+        }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            // Kita bisa tambahkan trigger di sini jika ingin animasi mendarat lebih instan
+            animator.Play("Player_Fall");
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = false;
+        }
+    }
     void FixedUpdate()
     {
-        if (!canMove) {
-            Debug.Log("Player cannot move - no small cog attached");
-            return;
-        }
         rb.velocity = new UnityEngine.Vector2(horizontalInput * normalSpeed, rb.velocity.y);
 
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += UnityEngine.Vector2.up * Physics2D.gravity.y * (fallmultiplier - 1) * Time.fixedDeltaTime;
+        }
     }
 
-    public override void OnCogAttached(GameObject cog, CogsType type)
+    private void FlipCharacter()
     {
-        canMove = true;
+        // THE I REALIZED THIS IS UNNECESSARY BECAUSE OUR SPRITE IS SYMMETRICAL LOL, BUT I'LL KEEP THIS HERE IN CASE WE WANT TO CHANGE THE SPRITE LATER
+        // if (horizontalInput == 0) return;
+
+        // UnityEngine.Vector3 currentScale = transform.localScale;
+
+        // float direction = Mathf.Sign(horizontalInput);
+
+        // transform.localScale = new UnityEngine.Vector3(
+        //     direction * Mathf.Abs(currentScale.x),
+        //     currentScale.y,
+        //     currentScale.z
+        // );
     }
 
-    public override void OnCogDetached(GameObject cog, CogsType type)
+    private void Jump()
     {
-        canMove = false;
+        rb.velocity = new UnityEngine.Vector2(rb.velocity.x, jumpPower);
+        isGrounded = false;
     }
+
 }
