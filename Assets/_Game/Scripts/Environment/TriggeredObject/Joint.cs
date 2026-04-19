@@ -1,7 +1,7 @@
 using _Game.Scripts.Cogs;
 using UnityEngine;
 
-public class Cart : BaseTriggerObj
+public class Joint : BaseTriggerObj
 {
     public override void OnCogAttached(GameObject cog, CogsType type)
     {

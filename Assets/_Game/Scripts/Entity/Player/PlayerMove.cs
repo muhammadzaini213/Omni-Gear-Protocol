@@ -20,6 +20,11 @@ public class PlayerMove : MonoBehaviour
     [Header("Jump Settings")]
     [SerializeField] private float fallmultiplier = 2f;
     [SerializeField] private float jumpCutMultiplier = 0.8f;
+    
+    public float speed => horizontalInput * normalSpeed;
+
+    public bool IsGrounded => isGrounded;
+    
 
     void Awake()
     {
