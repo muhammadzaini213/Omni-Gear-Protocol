@@ -1,9 +1,8 @@
-using System;
 using _Game.Scripts.Cogs;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Joint : BaseTriggerObj
+public class Cart : BaseTriggerObj
 {
     [SerializeField] private float targetedrotationDegree;
     [SerializeField] private float initialRotationDegree;
@@ -35,11 +34,11 @@ public class Joint : BaseTriggerObj
     // ── ISnapperAttached ──────────────────────────────────────────────
     public override void OnCogAttached(GameObject cog, CogsType type)
     {
-        isSocketEmpty = false;
+        Debug.Log($"[Cart] {cog.name} ({type}) attached to {gameObject.name}");
     }
 
     public override void OnCogDetached(GameObject cog, CogsType type)
     {
-        isSocketEmpty = true;
+        Debug.Log($"[Cart] {cog.name} ({type}) detached from {gameObject.name}");
     }
 }
