@@ -9,7 +9,7 @@ public class Joint : BaseTriggerObj
     [SerializeField] private float initialRotationDegree;
     [SerializeField] float rotationSpeed; 
     
-    [SerializeField] private bool isSocketEmpty = true;
+    private bool isSocketEmpty = true;
     [FormerlySerializedAs("_transform")] public Transform _rotationPoint;
 
     private void Update()
