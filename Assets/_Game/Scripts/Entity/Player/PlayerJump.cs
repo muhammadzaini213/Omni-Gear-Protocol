@@ -25,8 +25,12 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("yVelocity", rb.velocity.y);
 
-        if (!canJump) return;
-        
+        if (!canJump)
+        {
+            Debug.Log("Player cannot jump - no big cog attached");
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
             Jump();

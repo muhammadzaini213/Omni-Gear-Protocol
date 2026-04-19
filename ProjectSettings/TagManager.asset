@@ -8,6 +8,7 @@ TagManager:
   - Cogs
   - Snapper
   - Ground
+  - CogsDisabled
   layers:
   - Default
   - TransparentFX

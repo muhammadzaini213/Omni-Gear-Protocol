@@ -885,12 +885,12 @@ PrefabInstance:
     - target: {fileID: 4477048808247862304, guid: e221ba3a881f092a4b2323a0f0150f95,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.014
+      value: 0.79
       objectReference: {fileID: 0}
     - target: {fileID: 4477048808247862304, guid: e221ba3a881f092a4b2323a0f0150f95,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.055
+      value: 0.33
       objectReference: {fileID: 0}
     - target: {fileID: 4477048808247862304, guid: e221ba3a881f092a4b2323a0f0150f95,
         type: 3}
@@ -964,12 +964,12 @@ PrefabInstance:
     - target: {fileID: 5348451169436192414, guid: 1c9d6be4019b39249ab56ccb0901e398,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.772
+      value: 1.255
       objectReference: {fileID: 0}
     - target: {fileID: 5348451169436192414, guid: 1c9d6be4019b39249ab56ccb0901e398,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.501
+      value: 0.709
       objectReference: {fileID: 0}
     - target: {fileID: 5348451169436192414, guid: 1c9d6be4019b39249ab56ccb0901e398,
         type: 3}
@@ -1011,12 +1011,80 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5745632034224097387, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745632034224097387, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745632034224097387, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 259230802, guid: b0b4f862bd31614d38785929e87b4df9,
+        type: 3}
+    - target: {fileID: 5745632034224097387, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745632034224097387, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7920769871152445205, guid: 1c9d6be4019b39249ab56ccb0901e398,
         type: 3}
       propertyPath: snapChannel
       value: 
       objectReference: {fileID: 11400000, guid: 02edc63bd0030404298b5c448dd49491,
         type: 2}
+    - target: {fileID: 8402138157407798823, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402138157407798823, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8402138157407798823, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 126004288, guid: b0b4f862bd31614d38785929e87b4df9,
+        type: 3}
+    - target: {fileID: 8402138157407798823, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660360652630311029, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660360652630311029, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8660360652630311029, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 352917868, guid: b0b4f862bd31614d38785929e87b4df9,
+        type: 3}
+    - target: {fileID: 8660360652630311029, guid: 1c9d6be4019b39249ab56ccb0901e398,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
