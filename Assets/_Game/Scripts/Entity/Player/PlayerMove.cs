@@ -26,7 +26,10 @@ public class PlayerMove : BaseTriggerObj, ISocketAttached
 
     void FixedUpdate()
     {
-        if (!canMove) return;
+        if (!canMove) {
+            Debug.Log("Player cannot move - no small cog attached");
+            return;
+        }
         rb.velocity = new UnityEngine.Vector2(horizontalInput * normalSpeed, rb.velocity.y);
 
     }

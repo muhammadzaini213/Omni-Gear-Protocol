@@ -39,7 +39,7 @@ public class PlayerTelekinetic : BaseTriggerObj, ISocketAttached
                 c.ForceRelease();
             }
 
-            c.gameObject.tag = "Untagged";
+            c.gameObject.tag = "CogsDisabled";
         }
     }
 }

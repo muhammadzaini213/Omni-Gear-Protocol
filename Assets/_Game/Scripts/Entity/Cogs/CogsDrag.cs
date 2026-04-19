@@ -45,6 +45,11 @@ namespace _Game.Scripts.Cogs
 
         private void OnMouseDown()
         {
+            if (gameObject.CompareTag("CogsDisabled"))
+            {
+                Debug.Log("Player cannot drag this cog - medium cog is not attached");
+            }
+
             if (!gameObject.CompareTag("Cogs")) return;
 
             _zDepth = Camera.main.WorldToScreenPoint(transform.position).z;
