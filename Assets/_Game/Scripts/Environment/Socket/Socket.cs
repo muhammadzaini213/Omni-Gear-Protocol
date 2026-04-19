@@ -5,13 +5,13 @@ namespace _Game.Scripts.Cogs
     public class Socket : MonoBehaviour
     {
         [Header("Snap Settings")]
-        [SerializeField] private CogsType[] allowedTypes;
+        [SerializeField] protected CogsType[] allowedTypes;
         [SerializeField] private CogSnapChannel snapChannel;
         private bool _isCogSnapped;
         private Cogs _currentCog;
         private CogsDrag _currentDrag;
 
-        private void Update()
+        protected virtual void Update()
         {
             if (!_isCogSnapped || _currentCog == null) return;
 
@@ -37,7 +37,7 @@ namespace _Game.Scripts.Cogs
             SnapCog(other.gameObject, cog);
         }
 
-        private void SnapCog(GameObject cogObj, Cogs cog)
+        protected virtual void SnapCog(GameObject cogObj, Cogs cog)
         {
             _isCogSnapped = true;
             _currentCog = cog;

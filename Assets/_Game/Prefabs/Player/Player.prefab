@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   normalSpeed: 3
-  jumpPower: 10
+  jumpPower: 6
   fallmultiplier: 2
   jumpCutMultiplier: 0.8
 --- !u!114 &6661432319725414412
@@ -483,20 +483,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8432721355487743761, guid: 6960b1e560eaf0d40af47c72946e47b0,
-        type: 3}
-      propertyPath: m_Name
-      value: BigSocket
-      objectReference: {fileID: 0}
-    - target: {fileID: 8961560074155012260, guid: 6960b1e560eaf0d40af47c72946e47b0,
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
         type: 3}
       propertyPath: allowedTypes.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8961560074155012260, guid: 6960b1e560eaf0d40af47c72946e47b0,
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
         type: 3}
       propertyPath: allowedTypes.Array.data[0]
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432721355487743761, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
+      propertyPath: m_Name
+      value: BigSocket
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -572,20 +572,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8432721355487743761, guid: 6960b1e560eaf0d40af47c72946e47b0,
-        type: 3}
-      propertyPath: m_Name
-      value: MediumSocket
-      objectReference: {fileID: 0}
-    - target: {fileID: 8961560074155012260, guid: 6960b1e560eaf0d40af47c72946e47b0,
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
         type: 3}
       propertyPath: allowedTypes.Array.size
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8961560074155012260, guid: 6960b1e560eaf0d40af47c72946e47b0,
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
         type: 3}
       propertyPath: allowedTypes.Array.data[0]
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8432721355487743761, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
+      propertyPath: m_Name
+      value: MediumSocket
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -661,15 +661,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
+      propertyPath: allowedTypes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8432721355487743761, guid: 6960b1e560eaf0d40af47c72946e47b0,
         type: 3}
       propertyPath: m_Name
       value: SmallSocket
-      objectReference: {fileID: 0}
-    - target: {fileID: 8961560074155012260, guid: 6960b1e560eaf0d40af47c72946e47b0,
-        type: 3}
-      propertyPath: allowedTypes.Array.size
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
