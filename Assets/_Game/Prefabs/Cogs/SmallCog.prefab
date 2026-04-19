@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 307324505344106360}
   - component: {fileID: 6097401926901461579}
   - component: {fileID: 4410224673040830636}
-  - component: {fileID: 5618558871915953062}
+  - component: {fileID: 1648699295099075287}
   m_Layer: 6
   m_Name: SmallCog
   m_TagString: Cogs
@@ -150,8 +150,8 @@ MonoBehaviour:
   cogType: 0
   rotateSpeed: 150
   reverseDirection: 0
---- !u!60 &5618558871915953062
-PolygonCollider2D:
+--- !u!58 &1648699295099075287
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -183,24 +183,8 @@ PolygonCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.17, y: 0.17}
-    newSize: {x: 0.17, y: 0.17}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.085, y: 0.085}
-      - {x: -0.085, y: -0.085}
-      - {x: 0.065, y: -0.085}
-      - {x: 0.085, y: -0.065}
-      - {x: 0.085, y: 0.065}
-      - {x: 0.065, y: 0.085}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Radius: 0.085
 --- !u!1 &7275981708074598205
 GameObject:
   m_ObjectHideFlags: 0
