@@ -11,9 +11,13 @@ namespace _Game.Scripts.Cogs
         [SerializeField] private LayerMask checkLayers;
 
         [Header("Drag & Throw Settings")]
-        [SerializeField] private float dragSpeed = 25f; // Kekuatan tarikan objek mengejar mouse
-        [SerializeField] private float throwForceMultiplier = 1.2f; // Multiplier kekuatan lemparan
-        [SerializeField] private float dragResistance = 10f; // Hambatan udara saat di-drag agar stabil
+        [SerializeField] private float dragSpeed = 25f;
+        [SerializeField] private float throwForceMultiplier = 1.2f;
+        [SerializeField] private float dragResistance = 10f;
+
+        [Header("Telekinetic Range")]
+        [SerializeField] private float maxDragDistance = 7f; // Jarak maksimum dari Player
+        private Transform _playerTransform; 
 
         public bool onDrag { get; private set; }
 
@@ -22,8 +26,6 @@ namespace _Game.Scripts.Cogs
         private bool _isColliding;
         private Rigidbody2D _rb;
         private Cogs _cogs;
-
-        private Vector3 _lastPosition;
         private Vector2 _dragVelocity;
         private float _originalLinearDrag;
 
@@ -33,8 +35,9 @@ namespace _Game.Scripts.Cogs
             _cogs = GetComponent<Cogs>();
             _originalLinearDrag = _rb.drag;
 
-            _rb.interpolation = RigidbodyInterpolation2D.Interpolate;
-            _rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+            // Mencari player berdasarkan Tag "Player"
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            if (player != null) _playerTransform = player.transform;
         }
 
         void Update()
@@ -43,14 +46,40 @@ namespace _Game.Scripts.Cogs
             HandleReleaseLogic();
         }
 
+        private void HandleDragLogic()
+        {
+            if (onDrag)
+            {
+                Vector3 targetPos = MouseWorldPos() + _offset;
+
+                // --- LOGIKA JARAK MAKSIMUM ---
+                if (_playerTransform != null)
+                {
+                    float dist = Vector3.Distance(_playerTransform.position, transform.position);
+                    
+                    if (dist > maxDragDistance)
+                    {
+                        ForceRelease();
+                        return;
+                    }
+                }
+
+                Vector2 direction = (targetPos - transform.position);
+                _rb.velocity = direction * dragSpeed;
+                _dragVelocity = _rb.velocity;
+            }
+        }
+
         private void OnMouseDown()
         {
-            if (gameObject.CompareTag("CogsDisabled"))
-            {
-                Debug.Log("Player cannot drag this cog - medium cog is not attached");
-            }
-
             if (!gameObject.CompareTag("Cogs")) return;
+
+            // Cek jarak sebelum mengizinkan drag pertama kali
+            if (_playerTransform != null)
+            {
+                float dist = Vector3.Distance(_playerTransform.position, transform.position);
+                if (dist > maxDragDistance) return; 
+            }
 
             _zDepth = Camera.main.WorldToScreenPoint(transform.position).z;
             _offset = transform.position - MouseWorldPos();
@@ -58,19 +87,43 @@ namespace _Game.Scripts.Cogs
 
             _rb.isKinematic = false;
             _rb.gravityScale = 0f;
-
             _rb.drag = dragResistance;
-
-            _lastPosition = transform.position;
         }
 
+        public void ForceRelease()
+        {
+            if (!onDrag) return;
+            
+            onDrag = false;
+            _rb.drag = _originalLinearDrag;
+            _rb.isKinematic = false;
+            _rb.gravityScale = 1f;
+            
+            _rb.velocity = Vector2.down * 2f;
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            // Jika ingin melihat radius jangkauan dari Player saat objek dipilih
+            if (_playerTransform != null)
+            {
+                Gizmos.color = Color.cyan;
+                Gizmos.DrawWireSphere(_playerTransform.position, maxDragDistance);
+                
+                if (onDrag)
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawLine(_playerTransform.position, transform.position);
+                }
+            }
+        }
+
+        // ... Sisa fungsi OnMouseUp, HandleReleaseLogic, dll tetap sama ...
         private void OnMouseUp()
         {
             if (!onDrag) return;
             onDrag = false;
-
             _rb.drag = _originalLinearDrag;
-
             if (_cogs != null && !_cogs.isSnapped)
             {
                 _rb.gravityScale = 1f;
@@ -78,32 +131,16 @@ namespace _Game.Scripts.Cogs
             }
         }
 
-        private void HandleDragLogic()
-        {
-            if (onDrag)
-            {
-                Vector3 targetPos = MouseWorldPos() + _offset;
-                Vector2 direction = (targetPos - transform.position);
-
-                _rb.velocity = direction * dragSpeed;
-
-                _dragVelocity = _rb.velocity;
-            }
-        }
-
         private void HandleReleaseLogic()
         {
             if (onDrag || (_cogs != null && _cogs.isSnapped)) return;
-
             if (_rb.velocity.magnitude > 0.2f)
             {
                 _rb.isKinematic = false;
                 _rb.gravityScale = 1f;
                 return;
             }
-
             var hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, checkLayers);
-
             if (hit.collider != null || _isColliding)
             {
                 _rb.isKinematic = true;
@@ -119,29 +156,11 @@ namespace _Game.Scripts.Cogs
 
         private void OnCollisionEnter2D(Collision2D _) => _isColliding = true;
         private void OnCollisionExit2D(Collision2D _) => _isColliding = false;
-
-        private void OnDisable()
-        {
-            _isColliding = false;
-            onDrag = false;
-        }
-
         private Vector3 MouseWorldPos()
         {
             var p = Input.mousePosition;
             p.z = _zDepth;
             return Camera.main.ScreenToWorldPoint(p);
-        }
-
-        public void ForceRelease()
-        {
-            onDrag = false;
-
-            _rb.isKinematic = false;
-            _rb.gravityScale = 1f;
-            _rb.drag = _originalLinearDrag;
-
-            _rb.velocity = _dragVelocity;
         }
     }
 }

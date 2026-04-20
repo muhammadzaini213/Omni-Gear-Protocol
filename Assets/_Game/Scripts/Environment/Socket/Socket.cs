@@ -7,13 +7,19 @@ namespace _Game.Scripts.Cogs
         [Header("Snap Settings")]
         [SerializeField] protected CogsType[] allowedTypes;
         [SerializeField] private CogSnapChannel snapChannel;
-        private bool _isCogSnapped;
-        private Cogs _currentCog;
-        private CogsDrag _currentDrag;
+
+        [Header("VFX Settings")]
+        [SerializeField] private Animator vfxAnimator;
+        [SerializeField] private string smokeAnimationName = "Smoke";
+
+        protected bool _isCogSnapped;
+        protected Cogs _currentCog;
+        protected CogsDrag _currentDrag;
+        protected bool _isDisabled; 
 
         protected virtual void Update()
         {
-            if (!_isCogSnapped || _currentCog == null) return;
+            if (_isDisabled || !_isCogSnapped || _currentCog == null) return;
 
             if (!_currentDrag.onDrag)
             {
@@ -25,18 +31,23 @@ namespace _Game.Scripts.Cogs
             }
         }
 
+        public void DisableSocket()
+        {
+            _isDisabled = true;
+            if (_isCogSnapped) UnsnapCog();
+        }
+
         private void OnTriggerStay2D(Collider2D other)
         {
-            if (_isCogSnapped) return;
+            if (_isDisabled || _isCogSnapped) return;
 
             if (!IsAllowedCog(other, out Cogs cog)) return;
-
             if (cog.isSnapped) return;
 
-            var drag = other.GetComponent<CogsDrag>();
+            var drag = cog.GetComponent<CogsDrag>();
             if (drag == null || drag.onDrag) return;
 
-            SnapCog(other.gameObject, cog);
+            SnapCog(cog.gameObject, cog);
         }
 
         protected virtual void SnapCog(GameObject cogObj, Cogs cog)
@@ -47,6 +58,12 @@ namespace _Game.Scripts.Cogs
 
             cogObj.transform.SetParent(transform);
             cogObj.transform.localPosition = Vector3.zero;
+
+            if (vfxAnimator != null)
+            {
+                vfxAnimator.gameObject.transform.position = transform.position;
+                vfxAnimator.Play(smokeAnimationName);
+            }
 
             var rb = cogObj.GetComponent<Rigidbody2D>();
             if (rb != null)
@@ -61,7 +78,7 @@ namespace _Game.Scripts.Cogs
             snapChannel.RaiseSnapped(cogObj, cog.cogType);
         }
 
-        public void UnsnapCog()
+        public virtual void UnsnapCog()
         {
             if (_currentCog == null) return;
 

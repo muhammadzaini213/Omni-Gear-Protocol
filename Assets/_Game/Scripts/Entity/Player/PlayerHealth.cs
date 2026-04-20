@@ -1,16 +1,26 @@
 using UnityEngine;
+using _Game.Scripts.Cogs;
 
 public class PlayerHealth : Health
 {
     private Animator animator;
     private Rigidbody2D rb;
     private PlayerMove playerMove;
+    private PlayerJump playerJump;
+    private PlayerTelekinetic playerTelekinetic;
+    private PlayerSocket[] playerSockets;
+
     void Awake()
     {
         animator = GetComponentInParent<Animator>();
         rb = GetComponentInParent<Rigidbody2D>();
-        playerMove = GetComponentInParent<PlayerMove>();
+
+        playerMove = GetComponentInChildren<PlayerMove>();
+        playerJump = GetComponentInChildren<PlayerJump>();
+        playerTelekinetic = GetComponentInChildren<PlayerTelekinetic>();
+        playerSockets = GetComponentsInChildren<PlayerSocket>();
     }
+
     protected override void Start()
     {
         base.Start();
@@ -19,22 +29,30 @@ public class PlayerHealth : Health
 
     private void HandlePlayerDeath()
     {
-        Debug.Log("Player died! Show Game Over.");
-        animator.SetTrigger("Death");
+        if (playerMove != null) playerMove.enabled = false;
+        if (playerJump != null) playerJump.enabled = false;
+        if (playerTelekinetic != null) playerTelekinetic.enabled = false;
 
-        if (playerMove != null)
+        if (animator != null)
         {
-            playerMove.enabled = false;
+            animator.SetBool("isRunning", false);
+            animator.SetBool("isGrounded", false);
+            animator.SetFloat("yVelocity", 0);
+            animator.SetBool("isDeath", true);
         }
+
+
         if (rb != null)
         {
-            rb.velocity = Vector2.zero;
-        }
-    }
+            rb.velocity = new Vector2(0, rb.velocity.y);
 
-    public override void TakeDamage(int amount)
-    {
-        int reduced = Mathf.Max(amount - 5, 0); // contoh: armor 5
-        base.TakeDamage(reduced);
+            rb.isKinematic = false;
+
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        foreach (var socket in playerSockets)
+        {
+            socket.EjectAllCogsOnDeath();
+        }
     }
 }
