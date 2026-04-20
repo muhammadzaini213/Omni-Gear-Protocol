@@ -173,7 +173,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 447
   dragSpeed: 25
-  throwForceMultiplier: 1.2
+  throwForceMultiplier: 0.8
   dragResistance: 10
   maxDragDistance: 3
 --- !u!50 &6097401926901461579

@@ -99,11 +99,9 @@ namespace _Game.Scripts.Cogs
             _rb.isKinematic = false;
             _rb.gravityScale = 1f;
             
-            // Berikan sedikit gaya jatuh agar tidak melayang diam
             _rb.velocity = Vector2.down * 2f;
         }
 
-        // --- GIZMOS UNTUK VISUALISASI DI EDITOR ---
         private void OnDrawGizmosSelected()
         {
             // Jika ingin melihat radius jangkauan dari Player saat objek dipilih
