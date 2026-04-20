@@ -3,37 +3,27 @@ using UnityEngine;
 
 namespace _Game.Scripts
 {
-    public class VFXAnimHandler: BaseTriggerObj
+    public class VFXAnimHandler : BaseTriggerObj
     {
-        Animator animator;
-        PlayerMove playerMove;
-        bool isGrounded;
+        private Animator animator;
+        private PlayerJump playerJump;
         private bool isCogMissing;
-        float speed;
 
         public Transform movementVFX;
         
         void Start()
         {
             animator = GameObject.Find("VFX_Player").GetComponent<Animator>();
-            playerMove = GetComponent<PlayerMove>();
-            
+            playerJump = GetComponent<PlayerJump>();
         }
 
         void Update()
         {
-            isGrounded = playerMove.IsGrounded;
-            speed = playerMove.speed;
-
-            if (speed > 0.1f || speed < -0.1f)
-            {
-                animator.gameObject.transform.position = movementVFX.position;
-            }
-            
+            // Biarkan handler ini mengurus status "Grounded" dan "Spark" saja
+            animator.SetBool("Ground", playerJump.isGrounded);
             animator.SetBool("Spark", isCogMissing);
-            animator.SetBool("Ground", isGrounded);
-            animator.SetFloat("Speed", speed);
         }
+
         public override void OnCogAttached(GameObject cog, CogsType type)
         {
             isCogMissing = false;

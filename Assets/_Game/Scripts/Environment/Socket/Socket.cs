@@ -7,6 +7,11 @@ namespace _Game.Scripts.Cogs
         [Header("Snap Settings")]
         [SerializeField] protected CogsType[] allowedTypes;
         [SerializeField] private CogSnapChannel snapChannel;
+
+        [Header("VFX Settings")]
+        [SerializeField] private Animator vfxAnimator;
+        [SerializeField] private string smokeAnimationName = "Smoke";
+
         private bool _isCogSnapped;
         private Cogs _currentCog;
         private CogsDrag _currentDrag;
@@ -33,10 +38,12 @@ namespace _Game.Scripts.Cogs
 
             if (cog.isSnapped) return;
 
-            var drag = other.GetComponent<CogsDrag>();
+
+            var drag = cog.GetComponent<CogsDrag>();
+
             if (drag == null || drag.onDrag) return;
 
-            SnapCog(other.gameObject, cog);
+            SnapCog(cog.gameObject, cog);
         }
 
         protected virtual void SnapCog(GameObject cogObj, Cogs cog)
@@ -47,6 +54,12 @@ namespace _Game.Scripts.Cogs
 
             cogObj.transform.SetParent(transform);
             cogObj.transform.localPosition = Vector3.zero;
+
+            if (vfxAnimator != null)
+            {
+                vfxAnimator.gameObject.transform.position = transform.position;
+                vfxAnimator.Play(smokeAnimationName);
+            }
 
             var rb = cogObj.GetComponent<Rigidbody2D>();
             if (rb != null)

@@ -1,105 +1,92 @@
+using _Game.Scripts.Cogs;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove : BaseTriggerObj, ISocketAttached
 {
     private Rigidbody2D rb;
     private Animator animator;
-
-    // Unused for now
-    // private PlayerEnergy playerEnergy;
-
-    // ==================== MOVEMENT ====================
-    // Using Horizontal Input Instead of Vector2 because we only need to move left and right, for simplified ofc
     private float horizontalInput;
-    private bool isGrounded;
 
     [Header("Movement Settings")]
     [SerializeField] private float normalSpeed = 3f;
-    [SerializeField] private float jumpPower = 10f;
+    private PlayerJump playerJump;
+    private bool canMove;
 
-    [Header("Jump Settings")]
-    [SerializeField] private float fallmultiplier = 2f;
-    [SerializeField] private float jumpCutMultiplier = 0.8f;
-    
-    public float speed => horizontalInput * normalSpeed;
-
-    public bool IsGrounded => isGrounded;
-    
+    [Header("VFX Settings")]
+    public Animator vfxAnimator;
+    public Transform movementVFXPos;
+    public Transform sparkVFXPos;
+    [SerializeField] private string runVFXStateName = "Dust";
+    [SerializeField] private string sparkVFXStateName = "Spark";
+    [SerializeField] private string idleVFXStateName = "Idle";
 
     void Awake()
     {
         rb = GetComponentInParent<Rigidbody2D>();
         animator = GetComponentInParent<Animator>();
+        playerJump = GetComponent<PlayerJump>();
     }
 
     void Update()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
+        if (vfxAnimator == null) return;
 
-        // Update Animator
+        float rawInput = Input.GetAxisRaw("Horizontal");
+        horizontalInput = canMove ? rawInput : 0f;
+
         animator.SetBool("isRunning", horizontalInput != 0);
-        animator.SetBool("isGrounded", isGrounded); // Parameter baru untuk trigger landing
-        animator.SetFloat("yVelocity", rb.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        Vector3 targetPos;
+
+        if (!canMove && rawInput != 0)
         {
-            Jump();
+            targetPos = sparkVFXPos.position;
+            HandleVFXScale(rawInput);
+            vfxAnimator.Play(sparkVFXStateName);
+        }
+        else if (horizontalInput != 0)
+        {
+            targetPos = CalculateVFXPosition(horizontalInput);
+            HandleVFXScale(horizontalInput);
+
+            if (playerJump.isGrounded)
+                vfxAnimator.Play(runVFXStateName);
+            else
+                vfxAnimator.Play(idleVFXStateName);
+        }
+        else
+        {
+            targetPos = movementVFXPos.position;
+            vfxAnimator.Play(idleVFXStateName);
         }
 
-        // Jump Cut (Lompatan pendek jika spasi dilepas)
-        if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0)
-        {
-            rb.velocity = new UnityEngine.Vector2(rb.velocity.x, rb.velocity.y * jumpCutMultiplier);
-        }
+        vfxAnimator.gameObject.transform.position = targetPos;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void HandleVFXScale(float input)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            // Kita bisa tambahkan trigger di sini jika ingin animasi mendarat lebih instan
-            animator.Play("Player_Fall");
-        }
+        Vector3 vfxScale = vfxAnimator.gameObject.transform.localScale;
+        vfxScale.x = (input > 0) ? Mathf.Abs(vfxScale.x) : -Mathf.Abs(vfxScale.x);
+        vfxAnimator.gameObject.transform.localScale = vfxScale;
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private Vector3 CalculateVFXPosition(float input)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if (input < 0)
         {
-            isGrounded = false;
+            Vector3 localOffset = movementVFXPos.localPosition;
+            Vector3 mirroredLocalPos = new Vector3(-localOffset.x, localOffset.y, localOffset.z);
+            return movementVFXPos.parent.TransformPoint(mirroredLocalPos);
         }
+        return movementVFXPos.position;
     }
+
     void FixedUpdate()
     {
-        rb.velocity = new UnityEngine.Vector2(horizontalInput * normalSpeed, rb.velocity.y);
-
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += UnityEngine.Vector2.up * Physics2D.gravity.y * (fallmultiplier - 1) * Time.fixedDeltaTime;
-        }
+        if (!canMove) return;
+        rb.velocity = new Vector2(horizontalInput * normalSpeed, rb.velocity.y);
     }
 
-    private void FlipCharacter()
-    {
-        // THE I REALIZED THIS IS UNNECESSARY BECAUSE OUR SPRITE IS SYMMETRICAL LOL, BUT I'LL KEEP THIS HERE IN CASE WE WANT TO CHANGE THE SPRITE LATER
-        // if (horizontalInput == 0) return;
-
-        // UnityEngine.Vector3 currentScale = transform.localScale;
-
-        // float direction = Mathf.Sign(horizontalInput);
-
-        // transform.localScale = new UnityEngine.Vector3(
-        //     direction * Mathf.Abs(currentScale.x),
-        //     currentScale.y,
-        //     currentScale.z
-        // );
-    }
-
-    private void Jump()
-    {
-        rb.velocity = new UnityEngine.Vector2(rb.velocity.x, jumpPower);
-        isGrounded = false;
-    }
-
+    public override void OnCogAttached(GameObject cog, CogsType type) => canMove = true;
+    public override void OnCogDetached(GameObject cog, CogsType type) => canMove = false;
 }

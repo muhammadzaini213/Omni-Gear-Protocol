@@ -5,7 +5,7 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
 {
     private Rigidbody2D rb;
     private Animator animator;
-    private bool isGrounded;
+    public bool isGrounded { get; private set; }
     [SerializeField] private float jumpPower = 10f;
 
     [Header("Jump Settings")]
@@ -25,11 +25,7 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
         animator.SetBool("isGrounded", isGrounded);
         animator.SetFloat("yVelocity", rb.velocity.y);
 
-        if (!canJump)
-        {
-            Debug.Log("Player cannot jump - no big cog attached");
-            return;
-        }
+        if (!canJump) return;
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
@@ -38,7 +34,7 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
 
         if (Input.GetKeyUp(KeyCode.Space) && rb.velocity.y > 0)
         {
-            rb.velocity = new UnityEngine.Vector2(rb.velocity.x, rb.velocity.y * jumpCutMultiplier);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpCutMultiplier);
         }
     }
 
