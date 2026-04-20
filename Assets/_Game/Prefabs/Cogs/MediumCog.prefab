@@ -108,6 +108,7 @@ MonoBehaviour:
   dragSpeed: 25
   throwForceMultiplier: 1.2
   dragResistance: 10
+  maxDragDistance: 3
 --- !u!50 &6097401926901461579
 Rigidbody2D:
   serializedVersion: 4

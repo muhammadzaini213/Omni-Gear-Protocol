@@ -16,7 +16,7 @@ namespace _Game.Scripts.Cogs
         [SerializeField] private float dragResistance = 10f;
 
         [Header("Telekinetic Range")]
-        [SerializeField] private float maxDragDistance = 7f;
+        [SerializeField] private float maxDragDistance = 7f; // Jarak maksimum dari Player
         private Transform _playerTransform; 
 
         public bool onDrag { get; private set; }
@@ -35,6 +35,7 @@ namespace _Game.Scripts.Cogs
             _cogs = GetComponent<Cogs>();
             _originalLinearDrag = _rb.drag;
 
+            // Mencari player berdasarkan Tag "Player"
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             if (player != null) _playerTransform = player.transform;
         }
@@ -51,6 +52,7 @@ namespace _Game.Scripts.Cogs
             {
                 Vector3 targetPos = MouseWorldPos() + _offset;
 
+                // --- LOGIKA JARAK MAKSIMUM ---
                 if (_playerTransform != null)
                 {
                     float dist = Vector3.Distance(_playerTransform.position, transform.position);
@@ -72,6 +74,7 @@ namespace _Game.Scripts.Cogs
         {
             if (!gameObject.CompareTag("Cogs")) return;
 
+            // Cek jarak sebelum mengizinkan drag pertama kali
             if (_playerTransform != null)
             {
                 float dist = Vector3.Distance(_playerTransform.position, transform.position);
@@ -96,11 +99,14 @@ namespace _Game.Scripts.Cogs
             _rb.isKinematic = false;
             _rb.gravityScale = 1f;
             
+            // Berikan sedikit gaya jatuh agar tidak melayang diam
             _rb.velocity = Vector2.down * 2f;
         }
 
+        // --- GIZMOS UNTUK VISUALISASI DI EDITOR ---
         private void OnDrawGizmosSelected()
         {
+            // Jika ingin melihat radius jangkauan dari Player saat objek dipilih
             if (_playerTransform != null)
             {
                 Gizmos.color = Color.cyan;
@@ -114,6 +120,7 @@ namespace _Game.Scripts.Cogs
             }
         }
 
+        // ... Sisa fungsi OnMouseUp, HandleReleaseLogic, dll tetap sama ...
         private void OnMouseUp()
         {
             if (!onDrag) return;
