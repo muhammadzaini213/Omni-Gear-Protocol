@@ -62,6 +62,11 @@ public class PlayerMove : BaseTriggerObj, ISocketAttached
 
         vfxAnimator.gameObject.transform.position = targetPos;
     }
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        vfxAnimator.Play(idleVFXStateName);
+    }
 
     private void HandleVFXScale(float input)
     {
