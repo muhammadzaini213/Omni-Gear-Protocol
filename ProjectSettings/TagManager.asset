@@ -49,3 +49,6 @@ TagManager:
   - name: Cogs
     uniqueID: 2152908445
     locked: 0
+  - name: VFX
+    uniqueID: 1085540739
+    locked: 0
