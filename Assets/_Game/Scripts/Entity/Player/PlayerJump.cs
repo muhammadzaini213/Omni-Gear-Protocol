@@ -43,6 +43,9 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+
+            if (animator.GetBool("isDeath")) return;
+
             animator.Play("Player_Fall");
         }
     }
