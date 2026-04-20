@@ -12,6 +12,7 @@ public class PlayerTelekinetic : BaseTriggerObj, ISocketAttached
 
     public override void OnCogAttached(GameObject cog, CogsType type)
     {
+        CancelInvoke(nameof(DeactivateDrag));
         ActivateDrag();
     }
 
