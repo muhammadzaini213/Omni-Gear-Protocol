@@ -82,7 +82,7 @@ SpriteRenderer:
   m_Size: {x: 1.2, y: 1.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!60 &912814260158534195
@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: 989304048824482822}
   - component: {fileID: 8402138157407798823}
   - component: {fileID: 1478052248157257677}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mid-Section
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -253,7 +253,7 @@ SpriteRenderer:
   m_Size: {x: 9.6, y: 1.2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &1478052248157257677
@@ -432,6 +432,6 @@ SpriteRenderer:
   m_Size: {x: 1.6, y: 1.6}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
