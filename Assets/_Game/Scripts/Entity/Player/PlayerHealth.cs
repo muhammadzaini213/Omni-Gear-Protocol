@@ -9,6 +9,7 @@ public class PlayerHealth : Health
     private PlayerJump playerJump;
     private PlayerTelekinetic playerTelekinetic;
     private PlayerSocket[] playerSockets;
+    [SerializeField] private AudioClip deathSound;
 
     void Awake()
     {
@@ -29,6 +30,7 @@ public class PlayerHealth : Health
 
     private void HandlePlayerDeath()
     {
+        SfxPlayer.Instance.PlayPlayerSfx(deathSound);
         if (playerMove != null) playerMove.enabled = false;
         if (playerJump != null) playerJump.enabled = false;
         if (playerTelekinetic != null) playerTelekinetic.enabled = false;
@@ -50,6 +52,8 @@ public class PlayerHealth : Health
 
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
+
+
         foreach (var socket in playerSockets)
         {
             socket.EjectAllCogsOnDeath();

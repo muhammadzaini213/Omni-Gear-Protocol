@@ -171,10 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef47a20e7384f0466b58bdbbc2bcf931, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  snapChannel: {fileID: 11400000, guid: 5bec45d8c5a1b7c4aae457bd26176095, type: 2}
+  snapChannel: {fileID: 0}
   startPoint: {fileID: 638056373291982801}
   endPoint: {fileID: 5689433595925504814}
   moveSpeed: 3
+  elevatorClip: {fileID: 8300000, guid: e92b1b90c36805879abebe6a7a84200c, type: 3}
 --- !u!1 &5806345294004898555
 GameObject:
   m_ObjectHideFlags: 0

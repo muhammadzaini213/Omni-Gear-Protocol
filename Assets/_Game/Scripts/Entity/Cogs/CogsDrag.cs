@@ -118,7 +118,6 @@ namespace _Game.Scripts.Cogs
             }
         }
 
-        // ... Sisa fungsi OnMouseUp, HandleReleaseLogic, dll tetap sama ...
         private void OnMouseUp()
         {
             if (!onDrag) return;

@@ -123,9 +123,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 10
   m_LinearDrag: 0
-  m_AngularDrag: 0.5
+  m_AngularDrag: 0.8
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: c50c6874524529d46bb87e694d7fa0ff, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -151,6 +151,8 @@ MonoBehaviour:
   cogType: 1
   rotateSpeed: 100
   reverseDirection: 1
+  impactSFX: {fileID: 8300000, guid: 8d7156d2c33dff62581d4579a3db81b6, type: 3}
+  minImpactForce: 2
 --- !u!58 &5135440980514818066
 CircleCollider2D:
   m_ObjectHideFlags: 0

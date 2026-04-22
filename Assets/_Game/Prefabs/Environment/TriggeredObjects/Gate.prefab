@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapChannel: {fileID: 0}
+  gateClip: {fileID: 8300000, guid: e92b1b90c36805879abebe6a7a84200c, type: 3}
 --- !u!95 &4246381048418816140
 Animator:
   serializedVersion: 5

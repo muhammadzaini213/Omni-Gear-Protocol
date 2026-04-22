@@ -6,8 +6,9 @@ public class Joint : BaseTriggerObj
 {
     [SerializeField] private float targetedrotationDegree;
     [SerializeField] private float initialRotationDegree;
-    [SerializeField] float rotationSpeed; 
-    
+    [SerializeField] float rotationSpeed;
+    [SerializeField] private AudioClip jointClip;
+
     private bool isSocketEmpty = true;
     [FormerlySerializedAs("_transform")] public Transform _rotationPoint;
 
@@ -21,12 +22,12 @@ public class Joint : BaseTriggerObj
 
         float targetZ = isSocketEmpty ? initialRotationDegree : targetedrotationDegree;
         Quaternion targetRotation = Quaternion.Euler(0, 0, targetZ);
-        
+
         if (Quaternion.Angle(_rotationPoint.rotation, targetRotation) > 0.1f)
         {
             _rotationPoint.rotation = Quaternion.Slerp(
-                _rotationPoint.rotation, 
-                targetRotation, 
+                _rotationPoint.rotation,
+                targetRotation,
                 Time.deltaTime * rotationSpeed
             );
         }
@@ -36,11 +37,13 @@ public class Joint : BaseTriggerObj
     {
         isSocketEmpty = false;
         Debug.Log($"[Cart] {cog.name} ({type}) attached to {gameObject.name}");
+        SfxPlayer.Instance.PlayEnvironmentSfx(jointClip);
     }
 
     public override void OnCogDetached(GameObject cog, CogsType type)
     {
         isSocketEmpty = true;
         Debug.Log($"[Cart] {cog.name} ({type}) detached from {gameObject.name}");
+        SfxPlayer.Instance.PlayEnvironmentSfx(jointClip);
     }
 }
