@@ -239,6 +239,7 @@ MonoBehaviour:
   jumpPower: 6
   fallMultiplier: 2
   jumpCutMultiplier: 0.8
+  rotorSound: {fileID: 8300000, guid: 7854a0286a8afd7899b429c3eb938b9e, type: 3}
 --- !u!114 &2632453773613983020
 MonoBehaviour:
   m_ObjectHideFlags: 0

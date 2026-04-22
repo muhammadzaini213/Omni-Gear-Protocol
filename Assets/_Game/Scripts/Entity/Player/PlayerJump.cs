@@ -5,7 +5,7 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
 {
     private Rigidbody2D rb;
     private Animator animator;
-    
+
     [Header("Ground Check Settings")]
     [SerializeField] private Transform groundCheckPoint;
     [SerializeField] private float groundCheckRadius = 0.2f;
@@ -16,6 +16,8 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
     [SerializeField] private float jumpPower = 10f;
     [SerializeField] private float fallMultiplier = 2f;
     [SerializeField] private float jumpCutMultiplier = 0.8f;
+
+    [SerializeField] private AudioClip rotorSound;
 
     private bool canJump;
     private bool wasGrounded;
@@ -52,11 +54,22 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
     private void CheckGroundStatus()
     {
         wasGrounded = isGrounded;
-        
-        // Cek apakah lingkaran di kaki menyentuh layer Ground
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayer);
 
-        // Landing Logic: Jika frame sebelumnya melayang dan sekarang menyentuh tanah
+        // LOGIKA SUARA ROTOR
+        if (!isGrounded)
+        {
+            // Jika sedang di udara, nyalakan suara rotor
+            // Pastikan SfxPlayer punya pengecekan internal agar tidak memutar suara baru setiap frame
+            SfxPlayer.Instance.PlayPlayerSfx(rotorSound, 1f, true);
+        }
+        else
+        {
+            // Jika menyentuh tanah, matikan suara rotor
+            SfxPlayer.Instance.StopLoopingSfx(rotorSound);
+        }
+
+        // LOGIKA ANIMASI LANDING (Tetap dipertahankan)
         if (isGrounded && !wasGrounded)
         {
             if (!animator.GetBool("isDeath"))
@@ -65,7 +78,6 @@ public class PlayerJump : BaseTriggerObj, ISocketAttached
             }
         }
     }
-
     void FixedUpdate()
     {
         // Custom Gravity untuk Fall Feel yang lebih berat
