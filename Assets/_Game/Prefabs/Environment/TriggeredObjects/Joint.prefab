@@ -350,6 +350,7 @@ MonoBehaviour:
   targetedrotationDegree: 90
   initialRotationDegree: 0
   rotationSpeed: 2
+  jointClip: {fileID: 8300000, guid: b7733a445b83e38b8b83371410706e39, type: 3}
   _rotationPoint: {fileID: 3003834961624497310}
 --- !u!1 &8388215167303745005
 GameObject:

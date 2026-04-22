@@ -35,7 +35,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.73333174, y: 0.73333174, z: 0.73333174}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6720863773256981445}
@@ -44,6 +44,7 @@ Transform:
   - {fileID: 2181247930215141281}
   - {fileID: 6142423102219616385}
   - {fileID: 7425934942008566699}
+  - {fileID: 6021206524184340251}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5608138825965438578
@@ -114,7 +115,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 6fd1370098d28c63bbc797b34af9ebfa, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -194,6 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  deathSound: {fileID: 8300000, guid: ec5f0c90a1743f5f19f626bab3b9d39d, type: 3}
 --- !u!114 &8173694715723477939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,6 +216,8 @@ MonoBehaviour:
   runVFXStateName: Dust
   sparkVFXStateName: Spark
   idleVFXStateName: Idle
+  runSFX: {fileID: 8300000, guid: 2f98f288802f03d4883b07aab8ee8c97, type: 3}
+  sparkSFX: {fileID: 8300000, guid: 47675b27f48c8930987a99a2e6350f15, type: 3}
 --- !u!114 &927460049830741842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,8 +231,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   snapChannel: {fileID: 11400000, guid: 80d51eb67cc44aec8b0794102b9b916d, type: 2}
+  groundCheckPoint: {fileID: 6021206524184340251}
+  groundCheckRadius: 0.03
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 264
   jumpPower: 6
-  fallmultiplier: 2
+  fallMultiplier: 2
   jumpCutMultiplier: 0.8
 --- !u!114 &2632453773613983020
 MonoBehaviour:
@@ -258,6 +267,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   snapChannel: {fileID: 11400000, guid: 43b2eebb5e53f6647aea768cd0c6e5a9, type: 2}
   movementVFX: {fileID: 9095936533135930715}
+--- !u!1 &1137026162501504256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6021206524184340251}
+  m_Layer: 7
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6021206524184340251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137026162501504256}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.053, y: -0.649, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7758326908712759478}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2013526943256327871
 GameObject:
   m_ObjectHideFlags: 0
@@ -725,6 +765,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
         type: 3}
+      propertyPath: snapSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 351eecfd7107c98e5ad7396a0bf92321, type: 3}
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
+      propertyPath: recallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9589c5d884b9637459c85f866fb87765, type: 3}
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
       propertyPath: snapChannel
       value: 
       objectReference: {fileID: 11400000, guid: 80d51eb67cc44aec8b0794102b9b916d,
@@ -820,6 +870,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
         type: 3}
+      propertyPath: snapSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 351eecfd7107c98e5ad7396a0bf92321, type: 3}
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
+      propertyPath: recallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9589c5d884b9637459c85f866fb87765, type: 3}
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
       propertyPath: snapChannel
       value: 
       objectReference: {fileID: 11400000, guid: d031837657157270a978d1548aecfb51,
@@ -913,6 +973,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
+      propertyPath: snapSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 351eecfd7107c98e5ad7396a0bf92321, type: 3}
+    - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
+        type: 3}
+      propertyPath: recallSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9589c5d884b9637459c85f866fb87765, type: 3}
     - target: {fileID: 7480467467638085094, guid: 6960b1e560eaf0d40af47c72946e47b0,
         type: 3}
       propertyPath: snapChannel

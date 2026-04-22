@@ -138,8 +138,10 @@ MonoBehaviour:
   snapChannel: {fileID: 0}
   vfxAnimator: {fileID: 6000654491457430520}
   smokeAnimationName: Smoke
-  recallKey: 114
+  snapSound: {fileID: 8300000, guid: 65cb6ce6184e876b2b7d597871b5ac92, type: 3}
   flySpeed: 15
+  recallKey: 114
+  recallSound: {fileID: 8300000, guid: 9589c5d884b9637459c85f866fb87765, type: 3}
 --- !u!1 &8728896122136175015
 GameObject:
   m_ObjectHideFlags: 0

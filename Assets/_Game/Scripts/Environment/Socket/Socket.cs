@@ -12,10 +12,12 @@ namespace _Game.Scripts.Cogs
         [SerializeField] private Animator vfxAnimator;
         [SerializeField] private string smokeAnimationName = "Smoke";
 
+        [SerializeField] private AudioClip snapSound;
+
         protected bool _isCogSnapped;
         protected Cogs _currentCog;
         protected CogsDrag _currentDrag;
-        protected bool _isDisabled; 
+        protected bool _isDisabled;
 
         protected virtual void Update()
         {
@@ -76,6 +78,10 @@ namespace _Game.Scripts.Cogs
 
             cog?.Snap();
             snapChannel.RaiseSnapped(cogObj, cog.cogType);
+            if (snapSound != null)
+            {
+                SfxPlayer.Instance.PlayPlayerSfx(snapSound);
+            }
         }
 
         public virtual void UnsnapCog()
@@ -96,6 +102,10 @@ namespace _Game.Scripts.Cogs
             _isCogSnapped = false;
 
             snapChannel.RaiseUnsnapped(cogObj, type);
+            if (snapSound != null)
+            {
+                SfxPlayer.Instance.PlayPlayerSfx(snapSound);
+            }
         }
 
         private bool IsAllowedCog(Collider2D other, out Cogs cog)

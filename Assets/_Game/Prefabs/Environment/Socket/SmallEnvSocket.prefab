@@ -209,6 +209,7 @@ MonoBehaviour:
   snapChannel: {fileID: 0}
   vfxAnimator: {fileID: 9006921214904295544}
   smokeAnimationName: Smoke
+  snapSound: {fileID: 8300000, guid: 65cb6ce6184e876b2b7d597871b5ac92, type: 3}
 --- !u!58 &5079671782163961667
 CircleCollider2D:
   m_ObjectHideFlags: 0

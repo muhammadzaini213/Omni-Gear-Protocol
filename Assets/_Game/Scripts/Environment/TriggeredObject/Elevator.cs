@@ -7,12 +7,13 @@ public class Elevator : BaseTriggerObj
     [Header("Elevator Movement Settings")]
     [Tooltip("The position where the elevator starts (unpowered)")]
     [SerializeField] private Transform startPoint;
-    
+
     [Tooltip("The position the elevator moves to when a cog is attached")]
     [SerializeField] private Transform endPoint;
-    
+
     [Tooltip("How fast the elevator moves")]
     [SerializeField] private float moveSpeed = 3f;
+    [SerializeField] private AudioClip elevatorClip;
 
     private Rigidbody2D rb;
     private bool isPowered = false;
@@ -27,12 +28,14 @@ public class Elevator : BaseTriggerObj
     {
         Debug.Log($"[Elevator] {cog.name} ({type}) attached to {gameObject.name}");
         isPowered = true;
+        SfxPlayer.Instance.PlayEnvironmentSfx(elevatorClip);
     }
 
     public override void OnCogDetached(GameObject cog, CogsType type)
     {
         Debug.Log($"[Elevator] {cog.name} ({type}) detached from {gameObject.name}");
         isPowered = false;
+        SfxPlayer.Instance.PlayEnvironmentSfx(elevatorClip);
     }
 
     private void FixedUpdate()

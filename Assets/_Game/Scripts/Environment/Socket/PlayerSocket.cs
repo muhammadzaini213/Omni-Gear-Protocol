@@ -8,6 +8,7 @@ namespace _Game.Scripts.Cogs
         [Header("Recall Config")]
         [SerializeField] private float flySpeed = 15f;
         [SerializeField] private KeyCode recallKey = KeyCode.R;
+        [SerializeField] private AudioClip recallSound;
 
         protected override void Update()
         {
@@ -60,6 +61,11 @@ namespace _Game.Scripts.Cogs
             {
                 StopAllCoroutines();
                 StartCoroutine(RecallRoutine(targetCog));
+
+                if (recallSound != null)
+                {
+                    SfxPlayer.Instance.PlayPlayerSfx(recallSound);
+                }   
             }
         }
 

@@ -5,6 +5,7 @@ public class Gate : BaseTriggerObj
 {
     private Animator _animator;
     private Collider2D _collider;
+    [SerializeField] private AudioClip gateClip;
 
     private void Awake()
     {
@@ -19,7 +20,7 @@ public class Gate : BaseTriggerObj
     {
         if (_animator != null) _animator.Play("Gate_Open");
         if (_collider != null) _collider.enabled = false;
-        
+        SfxPlayer.Instance.PlayEnvironmentSfx(gateClip);
         Debug.Log($"Gate Opened with {type} Cog");
     }
 
@@ -27,7 +28,7 @@ public class Gate : BaseTriggerObj
     {
         if (_animator != null) _animator.Play("Gate_Close");
         if (_collider != null) _collider.enabled = true;
-
+        SfxPlayer.Instance.PlayEnvironmentSfx(gateClip);
         Debug.Log($"Gate Closed - Cog {type} removed");
     }
 }
