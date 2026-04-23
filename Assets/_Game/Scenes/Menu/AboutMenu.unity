@@ -428,8 +428,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 703994802}
   m_HandleRect: {fileID: 703994801}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.1685707
+  m_Value: 1.0000001
+  m_Size: 0.16857071
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -697,6 +697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainMenuSceneName: MainMenu
+  clickSound: {fileID: 8300000, guid: 6cd9cc27395eaadb3b2f406f99d55347, type: 3}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,8 +1065,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 1.8725891, y: -2.4219055}
+  m_SizeDelta: {x: 96.2004, y: 96.3674}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &856746043
 MonoBehaviour:

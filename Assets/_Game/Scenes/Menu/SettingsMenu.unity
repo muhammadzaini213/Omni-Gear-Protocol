@@ -679,6 +679,7 @@ MonoBehaviour:
   mainMenuSceneName: MainMenu
   _sfxSlider: {fileID: 1408976699}
   _musicSlider: {fileID: 573501587}
+  clickSound: {fileID: 8300000, guid: 6cd9cc27395eaadb3b2f406f99d55347, type: 3}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,8 +1446,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: -0.000030517578}
+  m_AnchoredPosition: {x: -13.9656, y: 11.8435}
+  m_SizeDelta: {x: 99.0506, y: 69.3892}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &856746043
 MonoBehaviour:
@@ -1569,7 +1570,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1989810764}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999926
+  m_Size: 0.9985697
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2787,7 +2788,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -326, y: 84.50003}
+  m_AnchoredPosition: {x: -326, y: 84.50021}
   m_SizeDelta: {x: 650, y: 150}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1989810763
