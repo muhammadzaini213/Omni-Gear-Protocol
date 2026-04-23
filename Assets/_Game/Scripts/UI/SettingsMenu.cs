@@ -8,6 +8,7 @@ public class SettingsMenu : MonoBehaviour
 
     [SerializeField] private Slider _sfxSlider;
     [SerializeField] private Slider _musicSlider;
+    [SerializeField] private AudioClip clickSound;
     private void Start()
     {
         _musicSlider.value = MusicPlayer.Instance.GetMusicVolume();
@@ -26,6 +27,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        SfxPlayer.Instance.PlayUISfx(clickSound);
         SceneManager.LoadScene(mainMenuSceneName);
     }
 }

@@ -1,36 +1,57 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using System.Collections;
 
-public class PreMenuScreen : MonoBehaviour
+[RequireComponent(typeof(CanvasGroup))]
+public class PreMenuScreen : MonoBehaviour, IPointerClickHandler
 {
     private CanvasGroup cg;
-    [SerializeField] private string menuScene = "MainMenu";
-    private bool fadeOutUI;
+    [SerializeField] private float fadeSpeed = 1.5f;
+    private bool isFading = false;
+
+    private const string INTRO_KEY = "HasSeenIntro";
 
     private void Awake()
     {
+        if (PlayerPrefs.GetInt(INTRO_KEY, 0) == 1)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         cg = GetComponent<CanvasGroup>();
+        
+        cg.alpha = 1;
+        cg.blocksRaycasts = true;
+        cg.interactable = true;
+
+        DontDestroyOnLoad(gameObject);
     }
 
-    private void Update()
+    public void OnPointerClick(PointerEventData eventData)
     {
-        if (fadeOutUI)
+        if (!isFading)
         {
-            cg.alpha -= Time.deltaTime;
-        }
-
-        if (cg.alpha <= 0.5)
-        {
-            fadeOutUI = false;
-            SceneManager.LoadScene(menuScene);
+            PlayerPrefs.SetInt(INTRO_KEY, 1);
+            PlayerPrefs.Save(); 
+            
+            StartCoroutine(FadeOutAndDisable());
         }
     }
 
-    public void OnMouseOver()
+    private IEnumerator FadeOutAndDisable()
     {
-       fadeOutUI = true;
+        isFading = true;
+
+        while (cg.alpha > 0)
+        {
+            cg.alpha -= Time.deltaTime * fadeSpeed;
+            yield return null;
+        }
+
+        cg.blocksRaycasts = false;
+        cg.interactable = false;
+        
+        Destroy(gameObject);
     }
 }

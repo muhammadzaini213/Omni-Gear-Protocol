@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using _Game.Scripts.Cogs;
 
 public class PlayerHealth : Health
@@ -9,6 +10,7 @@ public class PlayerHealth : Health
     private PlayerJump playerJump;
     private PlayerTelekinetic playerTelekinetic;
     private PlayerSocket[] playerSockets;
+    [SerializeField] private string GameOverScene = "GameOver";
     [SerializeField] private AudioClip deathSound;
 
     void Awake()
@@ -58,5 +60,12 @@ public class PlayerHealth : Health
         {
             socket.EjectAllCogsOnDeath();
         }
+
+        Invoke(nameof(GameOver), 2);
+    }
+
+    private void GameOver()
+    {
+        SceneManager.LoadScene(GameOverScene);
     }
 }
