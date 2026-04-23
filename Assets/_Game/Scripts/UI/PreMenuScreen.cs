@@ -1,11 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PreMenuScreen : MonoBehaviour
 {
     private CanvasGroup cg;
-    [SerializeField]private CanvasGroup menuCg;
+    [SerializeField] private string menuScene = "MainMenu";
     private bool fadeOutUI;
 
     private void Awake()
@@ -18,13 +20,12 @@ public class PreMenuScreen : MonoBehaviour
         if (fadeOutUI)
         {
             cg.alpha -= Time.deltaTime;
-            menuCg.alpha += Time.deltaTime;
         }
 
-        if (cg.alpha <= 0)
+        if (cg.alpha <= 0.5)
         {
             fadeOutUI = false;
-            gameObject.SetActive(false);
+            SceneManager.LoadScene(menuScene);
         }
     }
 
