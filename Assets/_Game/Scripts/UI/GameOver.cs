@@ -14,7 +14,6 @@ public class GameOver : MonoBehaviour
         SfxPlayer.Instance.StopAllCoroutines();
         SfxPlayer.Instance.StopAllLoopingSfx();
     }
-
     public void RetryGame()
     {
         SceneManager.LoadScene(GameScene);
