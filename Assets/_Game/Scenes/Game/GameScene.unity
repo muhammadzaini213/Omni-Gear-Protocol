@@ -12186,7 +12186,7 @@ PrefabInstance:
     - target: {fileID: 5689433595925504814, guid: 11e7247ff3cd2a372aaaea6084314b30,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.53
+      value: 12.7
       objectReference: {fileID: 0}
     - target: {fileID: 7169686408737329489, guid: 11e7247ff3cd2a372aaaea6084314b30,
         type: 3}
@@ -16303,7 +16303,7 @@ PrefabInstance:
         type: 3}
       propertyPath: snapChannel
       value: 
-      objectReference: {fileID: 11400000, guid: 6514813b679d319489dfd24daa8ef840,
+      objectReference: {fileID: 11400000, guid: cae63ce4acf6af941be05dbc1ffc7e61,
         type: 2}
     - target: {fileID: 8388215167303745005, guid: 1c9d6be4019b39249ab56ccb0901e398,
         type: 3}
