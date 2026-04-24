@@ -28,6 +28,31 @@ public class PlayerHealth : Health
     {
         base.Start();
         OnDeath += HandlePlayerDeath;
+
+        int savedIdx = PlayerPrefs.GetInt("CheckpointIndex", -1);
+
+        if (savedIdx == -1)
+        {
+            Debug.Log("Starting for the first time (No Checkpoint).");
+            return;
+        }
+
+        CheckPoint[] checkpoints = Object.FindObjectsByType<CheckPoint>(
+            FindObjectsInactive.Include,
+            FindObjectsSortMode.InstanceID
+        );
+
+        Debug.Log($"Searching for Checkpoint Index: {savedIdx}. Total checkpoints in scene: {checkpoints.Length}");
+
+        foreach (var cp in checkpoints)
+        {
+            if (cp.checkpointIndex == savedIdx)
+            {
+                transform.position = cp.transform.position;
+                Debug.Log("Teleported to Checkpoint: " + savedIdx);
+                return; // Selesai
+            }
+        }
     }
 
     private void HandlePlayerDeath()

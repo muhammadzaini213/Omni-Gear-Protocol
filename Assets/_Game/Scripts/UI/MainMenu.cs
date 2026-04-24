@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene(gameSceneName);
+        PlayerPrefs.SetInt("CheckpointIndex", -1); // reset checkpoint 
         SfxPlayer.Instance.PlayUISfx(clickSound);
     }
 

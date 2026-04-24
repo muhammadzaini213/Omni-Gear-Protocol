@@ -1430,7 +1430,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.16299438, y: 1.7565002}
+  m_AnchoredPosition: {x: -0.16296387, y: 1.7565002}
   m_SizeDelta: {x: 176.011, y: 188.8452}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &8409965101877239128
@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a52067d76c173b97acbbfa73917329f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameScene: TESTING
+  GameScene: GameScene
   MainMenuScene: MainMenu
   gameOverSfx: {fileID: 8300000, guid: 563fca0c26fe2785681dd977a5c8fbce, type: 3}
   clickSound: {fileID: 8300000, guid: 6cd9cc27395eaadb3b2f406f99d55347, type: 3}

@@ -37,13 +37,13 @@ public class Joint : BaseTriggerObj
     {
         isSocketEmpty = false;
         Debug.Log($"[Cart] {cog.name} ({type}) attached to {gameObject.name}");
-        SfxPlayer.Instance.PlayEnvironmentSfx(jointClip);
+        SfxPlayer.Instance.PlayEnvironmentSfx(jointClip, volume: 0.5f);
     }
 
     public override void OnCogDetached(GameObject cog, CogsType type)
     {
         isSocketEmpty = true;
         Debug.Log($"[Cart] {cog.name} ({type}) detached from {gameObject.name}");
-        SfxPlayer.Instance.PlayEnvironmentSfx(jointClip);
+        SfxPlayer.Instance.PlayEnvironmentSfx(jointClip, volume: 0.5f);
     }
 }

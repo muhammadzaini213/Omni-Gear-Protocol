@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8657694810503128047}
   - component: {fileID: 879323975260809858}
   - component: {fileID: 8280882293523258871}
-  - component: {fileID: 149820027522153658}
+  - component: {fileID: 5067343419799775194}
   m_Layer: 0
   m_Name: HazardZone
   m_TagString: Untagged
@@ -101,8 +101,8 @@ MonoBehaviour:
   areaDamage: 20
   damageInterval: 1
   isInstantDeath: 1
---- !u!60 &149820027522153658
-PolygonCollider2D:
+--- !u!61 &5067343419799775194
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,16 +143,6 @@ PolygonCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.21, y: 0.14999999}
-      - {x: -0.19999999, y: 0.14999999}
-      - {x: -0.22, y: 0.099999994}
-      - {x: -0.22999999, y: 0}
-      - {x: -0.24, y: -0.13}
-      - {x: -0.24, y: -0.14999999}
-      - {x: 0.25, y: -0.14999999}
-      - {x: 0.25, y: -0.13}
-      - {x: 0.24, y: 0}
-      - {x: 0.22999999, y: 0.099999994}
-  m_UseDelaunayMesh: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 0.3}
+  m_EdgeRadius: 0
