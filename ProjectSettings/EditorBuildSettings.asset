@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/_Game/Scenes/Menu/SettingsMenu.unity
     guid: 71449f778a9ffbd698bfe2b3ad011685
   - enabled: 1
-    path: Assets/_Game/Scenes/Game/Prototyping/LEVEL DESIGN - DO NOT EDIT.unity
+    path: Assets/_Game/Scenes/Game/Prototyping/OLD LEVEL DESIGN.unity
     guid: 6347b40392909d94d804615505b8ac34
   - enabled: 1
     path: Assets/_Game/Scenes/Menu/AboutMenu.unity
